@@ -1,0 +1,53 @@
+problems:
+  q1:
+    description: "Consider an agent managing inventory for a store, which is represented as an MDP. The stock level $s$ refers to the number of items currently in stock (between 0 and 10, inclusive). At any time, the agent has two actions: sell (decrease stock by one, if possible) or buy (increase stock by one, if possible). If $s > 0$ and the agent sells, it receives +1 reward for the sale and the stock level transitions to $s - 1$. If $s = 0$ nothing happens. If $s < 9$ and the agent buys, it receives no reward and the stock level transitions to $s +  1$. The owner of the store likes to see a fully stocked inventory at the end of the day, so the agent is rewarded with $+100$ if the stock level ever reaches the maximum level $s = 10$. $s = 10$ is also a terminal state and the problem ends if it is reached. The reward function, denoted as $r(s, a, s')$, can be summarized concisely as follows: $r(s,\\text{sell}, s-1) = 1$ for $s > 0$ and $r(0,\\text{sell},0) = 0$ $r(s, \\text{buy}, s+1) = 0$ for $s < 9$ and $r(9, \\text{buy}, 10) = 100$. The last condition indicates that transitioning from $s = 9$ to $s = 10$ (fully stocked) yields $+100$ reward. The stock level is assumed to always start at $s = 3$ at the beginning of the day. We will consider how the agent's optimal policy changes as we adjust the finite horizon $H$ of the problem. Recall that the horizon $H$ refers to a limit on the number of time steps the agent can interact with the MDP before the episode terminates, regardless of whether it has reached a terminal state. We will explore properties of the optimal policy (the policy that achieves highest episode reward) as the horizon $H$ changes. Consider, for example, $H = 4$. The agent can sell for three steps, transitioning from $s = 3$ to $s = 2$ to $s = 1$ to $s = 0$ receiving rewards $+1$, $+1$, and $+1$ for each sell action. At the fourth step, the inventory is empty so it can sell or buy, receiving no reward regardless. Then the problem terminates since time has expired. (a) Starting from the initial state $s = 3$, it possible to a choose a value of $H$ that results in the optimal policy taking both buy and sell steps during its execution? Explain why or why not. (b) In the infinite-horizon discounted setting, is it possible to choose a fixed value of $\\gamma \\in [0, 1)$ such that the optimal policy starting from $s = 3$ never fully stocks the inventory? You do not need to propose a specific value, but simply explain your reasoning either way. (c) Does there \\textbf{ever} exist a $\\gamma$ such that the optimal policy for this MDP (under the infinite horizon setting) with a $\\gamma$ is the same as a MDP with a finite horizon $H$? Please give an example of a particular $\\gamma$ and $H$ if there exists one. (d) Does there \\textbf{always} exist a $\\gamma$ such that the optimal policy for this MDP (under the infinite horizon setting) with $\\gamma$ is the same as an MDP with any finite horizon $H$? Please provide a discussion (1-2 sentences) describing your reasoning. Remember that finite horizon $H$ means that the episode ends after $H$ time steps even if the terminal state has not been reached."
+    parts:
+      a:
+        solution: "Yes. Consider choosing $H = 5$. One potential optimal policy can sell in the first three steps, buy and then sell again to achieve $+4$ reward. It's not possible to get higher reward than this for $H = 5$."
+        points: 2
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-2: Incorrect or not attempted"
+      b:
+        solution: "Yes, it's possible if the value of $\\gamma$ is either 0 or very close to 0. In this case, the agent prioritizes shorter term rewards which can force them to sell earlier rather than buy enough to receive the longer term reward of having a fully stocked inventory."
+        points: 2
+        rubric:
+          - "0: Correct"
+          - "-0.5: Off by one"
+          - "-2: Incorrect or not attempted"
+      c:
+        solution: "Yes, if $\\gamma=0$ this is exactly the same as a horizon of $H=1$."
+        points: 2
+        rubric:
+          - "0: Correct, with explanations"
+          - "-1: Correct, but no explanation"
+          - "-1: Correct, but no specific example of gamma given that works"
+          - "-2: Incorrect or not attempted"
+      d:
+        solution: "No, for any MDP, there does not always exist a $\\gamma$ such that the optimal policy for the infinite horizon $\\gamma$-discounted MDP is the same as the optimal policy for the finite horizon $H$ MDP. Recall that in general, the optimal policy for a finite horizon MDP may be non-stationary, meaning that the optimal policy may choose different actions for the same state, depending on how many time steps of the horizon are still remaining. Recall that the infinite horizon discounted gamma optimal policy is solving for $V^*(s) = \\max_a r(s) + \\gamma \\sum_{s'} p(s'|s,a) V^*(s').$ Therefore the optimal policy for the $\\gamma$-discounted infinite horizon MDP is always \\textit{stationary}. We also know that there always exists an optimal policy which is deterministic for a tabular infinite horizon discounted MDP. As an example, consider the inventory MDP but where the initial start state is $s9$. Consider a $H=4$ finite horizon MDP. The optimal policy for this setting will depend on the total horizon and the number of steps remaining. Let $\\pi^*_{Hh}$ be the optimal policy for this horizon problem when there are $h$ steps remaining. Then $\\pi_{44}(s9)=Sell$,$\\pi_{43}(s8)=$Buy, $\\pi_{42}(s9)=$Buy, which transitions to the s10 terminal state, where a reward of 100 is received. But the optimal policy for any infinite horizon $\\gamma$-discounted MDP must be stationary, and which means in at least one of the optimal policies, $\\pi^*(s)$ must be either Buy or Sell (since a deterministic policy is optimal for a tabular MDP with discounted infinite horizon)."
+        points: 2
+        rubric:
+          - "0: Correct, with explanations"
+          - "-1: Correct, but no explanation"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-2: Incorrect or not attempted"
+  q2:
+    description: "This problem asks you to think about an example where reward hacking may occur, introduced by Pan, Bhatia and Steinhardt. Consider designing RL for autonomous cars where the goal is to have decision policies that minimize the mean commute for all drivers (those driven by humans and those driven by AI). This reward might be tricky to specify (it depends on the destination of each car, etc) but a simpler reward (called the reward 'proxy') is to maximize the mean velocity of all cars. Now consider a scenario where there is a single AI car (the red car in the figure) and many cars driven by humans (the grey car). In this setting, under this simpler 'proxy' reward, the optimal policy for the red (AI) car is to park and not merge onto the highway. (a) Explain why the optimal policy for the AI car is not to merge onto the highway. (b) Note this behavior is not aligned with the true reward function. Share some ideas about alternate reward functions (that are not minimizing commute) that might still be easier to optimize, but would not result in the AI car never merging. Your answer should be 2-5 sentences and can include equations: there is not a single answer and reasonable solutions will be given full credit."
+    parts:
+      a:
+        solution: "You can get higher proxy reward if the mean velocity is higher by simply have the red car come to a full stop while the gray cars can go full speed. This is contrast to having them all go at a slow speed to accommodate the merge."
+        points: 2
+        rubric:
+          - "0: Correct"
+          - "-1: Doesn't mention that merging slows down cars on the highway"
+          - "-2: Incorrect or not attempted"
+      b:
+        solution: "One possibility is to create a reward function that is a function of the slowest car on the road, aka $r(s) = \\min_c velocity(c)$ where $c$ is the set of cars. This will incentivize all cars driving at the same rate."
+        points: 3
+        rubric:
+          - "0: Correct"
+          - "-1: Not easier to optimize"
+          - "-1: Car still may not merge"
+          - "-1: Does not specify a reward function"
+          - "-2: Incorrect or not attempted"
