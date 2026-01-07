@@ -51,3 +51,140 @@ problems:
           - "-1: Car still may not merge"
           - "-1: Does not specify a reward function"
           - "-2: Incorrect or not attempted"
+  q3:
+    description: "In this problem, we study value functions and properties of the Bellman backup operator. A value function is a |S|-dimensional vector, where |S| is the number of states of the MDP. When we refer to an arbitrary value function V, we mean any |S|-dimensional vector, not necessarily one achievable by any policy in the MDP. In contrast, V^pi denotes the value function achieved by a policy pi.
+
+    The Bellman optimality operator B is defined as:
+    (BV)(s) = max over a of [ r(s,a) + gamma * sum over s' in S of p(s'|s,a) V(s') ].
+
+    The Bellman operator for a fixed deterministic policy pi is:
+    (B^pi V)(s) = r(s,pi(s)) + gamma * sum over s' in S of p(s'|s,pi(s)) V(s').
+
+    Assume 0 <= gamma < 1 and ||v|| = max over s of |v(s)|.
+
+    (a) Show that ||B^pi V - B^pi V'|| <= gamma ||V - V'||.
+    (b) Prove that the fixed point of B^pi is unique.
+    (c) Show monotonicity of B^pi.
+    (d) Characterize when ||BV - V|| = 0.
+    (e) Prove Bellman residual bounds on ||V - V^pi|| and ||V - V*||.
+    (f) Prove the performance bound for the greedy policy induced by V.
+    (g) Give a real-world application of the bound.
+    (h) Compare two value functions with equal Bellman error.
+    (i) Prove the tighter bound assuming V* <= V."
+
+    parts:
+      a:
+        solution: "Using the definition of B^pi, for any state s we have
+        B^pi V(s) - B^pi V'(s) = gamma * E[ V(s') - V'(s') | s, pi(s) ] <= gamma ||V - V'||.
+        Applying the same argument in the opposite direction yields
+        ||B^pi V - B^pi V'|| <= gamma ||V - V'||."
+        points: 3
+        rubric:
+          - "0: Correct"
+          - "-0.5: Minor error"
+          - "-1.5: Correct approach but significant error"
+          - "-3: Incorrect or did not attempt"
+
+      b:
+        solution: "Assume two fixed points V and V'. Then
+        ||V - V'|| = ||B^pi V - B^pi V'|| <= gamma ||V - V'||.
+        Since gamma < 1, this implies V = V'."
+        points: 3
+        rubric:
+          - "0: Correct"
+          - "-1.5: Right starting idea but incorrect"
+          - "-0.5: Missing steps or minor error(s) in proof or format"
+          - "-3: Incorrect or did not attempt"
+
+      c:
+        solution: "If V(s) <= V'(s) for all s, then expectations preserve order:
+        B^pi V(s) <= B^pi V'(s) for all s."
+        points: 3
+        rubric:
+          - "0: Correct"
+          - "-0.5: Minor error"
+          - "-1.5: Right idea but incorrect"
+          - "-3: Missing or incorrect"
+
+      d:
+        solution: "||BV - V|| = 0 iff BV = V, meaning V is a fixed point of B. Since B has a unique fixed point V*, we must have V = V*."
+        points: 2
+        rubric:
+          - "0: Correct"
+          - "-1: Doesn't conclude that V = V*"
+          - "-1: Doesn't mention that V is a fixed point of B"
+          - "-0.5: Minor errors"
+          - "-2: Missing"
+
+      e:
+        solution: "Using triangle inequality and contraction of B^pi:
+        ||V - V^pi|| <= ||V - B^pi V|| + gamma ||V - V^pi||,
+        which rearranges to
+        ||V - V^pi|| <= ||V - B^pi V|| / (1 - gamma).
+        The second inequality follows analogously with B and V*."
+        points: 5
+        rubric:
+          - "0: Correct"
+          - "-0.5: Very minor error"
+          - "-1: Minor error"
+          - "-1: Skipped step (e.g. fixed point)"
+          - "-0.5: Only proved one of the two inequalities"
+          - "-2: Moderate error, or a couple minor errors"
+          - "-3: Significant error, or several minor errors"
+          - "-5: Blank"
+
+      f:
+        solution: "Since pi is greedy w.r.t. V, BV = B^pi V.
+        By part (e):
+        ||V - V^pi|| <= epsilon / (1 - gamma),
+        ||V - V*|| <= epsilon / (1 - gamma).
+        Triangle inequality gives
+        ||V* - V^pi|| <= 2 epsilon / (1 - gamma).
+        Since V^pi <= V*, we conclude
+        V^pi(s) >= V*(s) - 2 epsilon / (1 - gamma)."
+        points: 5
+        rubric:
+          - "0: Correct"
+          - "-1: Minor error"
+          - "-1: Skipped step"
+          - "-2: Moderate error, or a couple smaller errors"
+          - "-3: Significant error, or several smaller errors"
+          - "-1: Concluded bound without stating pi is greedy w.r.t. V"
+          - "-1: Concluded |V* - V^pi| without explaining one-sided inequality"
+          - "-0.25: Not typeset"
+          - "-5: Blank or incorrect"
+
+      g:
+        solution: "In healthcare or safety-critical systems, lower bounds ensure policies meet minimum acceptable performance before deployment."
+        points: 2
+        rubric:
+          - "0: Correct"
+          - "-1: Doesn't provide a real-world example where a lower bound is useful"
+          - "-2: Incorrect or no attempt"
+
+      h:
+        solution: "No. Equal Bellman error only guarantees both policies are within a bound of optimal, not that they are equal."
+        points: 2
+        rubric:
+          - "0: Correct"
+          - "-2: Incorrect (answers yes) or blank"
+
+      i:
+        solution: "Assuming V* <= V and pi greedy w.r.t. V, BV = B^pi V.
+        From part (e):
+        ||V - V^pi|| <= epsilon / (1 - gamma).
+        Since V^pi <= V* <= V,
+        V*(s) - V^pi(s) <= V(s) - V^pi(s) <= epsilon / (1 - gamma),
+        giving the result."
+        points: 5
+        rubric:
+          - "0: Correct"
+          - "-1: Claims without using greediness of pi"
+          - "-1: Claims without justification"
+          - "-1: Minor error"
+          - "-1: Skipped step"
+          - "-2: Moderate error, or a couple smaller errors"
+          - "-3: Significant error, or several smaller errors"
+          - "-0.25: Not typeset or unclear"
+          - "-5: Incorrect or blank"
+
