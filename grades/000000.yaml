@@ -1,0 +1,66 @@
+student_file: 000000.tex
+total_points: 13.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct or close enough'
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Incorrect or did not attempt'
+    comments: No response was provided.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Incorrect or did not attempt'
+    comments: No attempt was made to answer the question.
+  q3_c:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Missing or incorrect'
+    comments: No response was provided for this part.
+  q3_d:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Missing'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank or incorrect'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or no attempt'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Incorrect or blank'

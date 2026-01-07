@@ -1,0 +1,81 @@
+student_file: 000002.tex
+total_points: 4.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: The student incorrectly claims that the agent cannot take both buy and
+      sell actions in an optimal policy. The student misunderstands that the agent
+      can take buy and sell actions at different time steps.
+  q1_b:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: The student incorrectly claims that the agent will always fully stock
+      the inventory. The agent may prioritize shorter term rewards if gamma is low
+      enough.
+  q1_c:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: On the right track but conceptual misunderstanding'
+    comments: The student is on the right track by considering \(\gamma = 0\), but
+      this is only equivalent to H=1, not any finite horizon H.
+  q2_a:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t explain or imply that merging would slow down cars
+      on the highway'
+    comments: The student's response does not explain why the optimal policy for the
+      AI car is to not merge onto the highway in terms of maximizing the mean velocity
+      of all cars. It doesn't mention that merging would slow down the other cars,
+      thus lowering the mean velocity.
+  q2_b:
+    max_points: 3.0
+    points_awarded: 2.0
+    rubric_item: '-1: Car still may not merge'
+    comments: The proposed solutions may incentivize movement, but do not guarantee
+      merging onto the highway, especially if other actions yield higher rewards.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Incorrect or did not attempt'
+    comments: No response was provided.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Incorrect or did not attempt'
+    comments: No attempt was made to answer the question.
+  q3_c:
+    max_points: 3.0
+    points_awarded: 0.0
+    rubric_item: '-3: Missing or incorrect'
+    comments: No response was provided for this part.
+  q3_d:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Missing'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank or incorrect'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or no attempt'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Incorrect or blank'
