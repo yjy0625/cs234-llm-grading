@@ -40,7 +40,7 @@ problems:
         points: 2
         rubric:
           - "0: Correct"
-          - "-1: Doesn't mention that merging slows down cars on the highway"
+          - "-1: Doesn't explain or imply that merging would slow down cars on the highway"
           - "-2: Incorrect or not attempted"
       b:
         solution: "One possibility is to create a reward function that is a function of the slowest car on the road, aka $r(s) = \\min_c velocity(c)$ where $c$ is the set of cars. This will incentivize all cars driving at the same rate."
