@@ -98,6 +98,7 @@ def grade_part(client: genai.Client, prompt: str, max_points: float) -> PartGrad
             "system_instruction": SYSTEM_PROMPT,
             "response_mime_type": "application/json",
             "response_schema": RawPartResponse,
+            "temperature": 0.0,
         },
     )
     parsed = response.parsed
@@ -173,13 +174,13 @@ def main() -> None:
 
     root = Path(__file__).parent
     assignment_info = load_assignment_info(root / "info.yaml")
-    solutions_dir = root / "solutions"
+    submissions_dir = root / "submissions"
     output_dir = root / "grades"
     output_dir.mkdir(exist_ok=True)
 
     client = None if args.dry_run else get_client()
 
-    for tex_path in sorted(solutions_dir.glob("*.tex")):
+    for tex_path in sorted(submissions_dir.glob("*.tex")):
         grade_student(tex_path, assignment_info, client, output_dir, args.dry_run)
 
 
