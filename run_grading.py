@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from google import genai
 
 MODEL_NAME = "gemini-2.0-flash"
@@ -19,6 +19,7 @@ class PartGrading(BaseModel):
 class RawPartResponse(BaseModel):
     rubric_item: str
     comments: str | None = None
+    points_deducted: float = Field(..., ge=0.0)
 
 
 SYSTEM_PROMPT = """
@@ -26,8 +27,10 @@ You are a rigorous Academic Grader. Follow these steps exactly:
 
 1. EVALUATE: Compare the Student Response against the Correct Answer and Rubric.
 2. LIST EVIDENCE: Reason about the rubric that best applies. You must select exactly one rubric option and copy its text verbatim into 'rubric_item'.
-3. JUSTIFY: Provide a concise justification (1–2 sentences) in 'comments' (or null if nothing to add).
-4. OUTPUT: Return valid JSON matching the RawPartResponse schema. Double-check arithmetic before replying.
+3. DEDUCTION: Output 'points_deducted' from the chosen 'rubric_item' as a nonnegative number (ignore the minus sign) representing how many points to subtract from MAX SCORE.
+   - If the response is perfect, points_deducted = 0.
+4. JUSTIFY: Provide a concise justification (1–2 sentences) in 'comments' (or null if nothing to add).
+5. OUTPUT: Return valid JSON matching the RawPartResponse schema. Double-check arithmetic before replying.
 """
 
 
@@ -101,8 +104,11 @@ def grade_part(client: genai.Client, prompt: str, max_points: float) -> PartGrad
         },
     )
     parsed = response.parsed
-    deduction = parse_deduction_from_rubric(parsed.rubric_item)
-    awarded = clamp_score(max_points - deduction, max_points)
+    # deduction = parse_deduction_from_rubric(parsed.rubric_item)
+    # awarded = clamp_score(max_points - deduction, max_points)
+    print(parsed.rubric_item, parsed.points_deducted)
+    awarded = clamp_score(max_points - float(parsed.points_deducted), max_points)
+
     return PartGrading(rubric_item=parsed.rubric_item, points_awarded=awarded, comments=parsed.comments)
 
 
