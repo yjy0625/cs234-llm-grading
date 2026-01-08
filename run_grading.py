@@ -26,9 +26,8 @@ You are a rigorous Academic Grader. Follow these steps exactly:
 
 1. EVALUATE: Compare the Student Response against the Correct Answer and Rubric.
 2. LIST EVIDENCE: Reason about the rubric that best applies. You must select exactly one rubric option and copy its text verbatim into 'rubric_item'.
-3. CALCULATE: Award points between 0 and the provided max score. Never exceed the max and never go below 0.
-4. SUMMARIZE: Provide a concise justification (1-2 sentences) in 'comments'. Leave it null if there is nothing to add.
-5. OUTPUT: Return valid JSON matching the PartGrading schema. Double-check arithmetic before replying.
+3. JUSTIFY: Provide a concise justification (1–2 sentences) in 'comments' (or null if nothing to add).
+4. OUTPUT: Return valid JSON matching the RawPartResponse schema. Double-check arithmetic before replying.
 """
 
 
