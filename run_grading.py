@@ -169,11 +169,12 @@ def grade_student(tex_path: Path, assignment_info: dict, client: genai.Client | 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Grade solutions with Gemini or preview prompts via dry run.")
     parser.add_argument("--dry-run", action="store_true", help="Print prompts without calling the API or writing grades.")
+    parser.add_argument("--submissions-dir", type=Path, help="Path to submissions directory (defaults to ./submissions)")
     args = parser.parse_args()
 
     root = Path(__file__).parent
     assignment_info = load_assignment_info(root / "info.yaml")
-    submissions_dir = root / "submissions"
+    submissions_dir = args.submissions_dir or (root / "submissions")
     output_dir = root / "grades"
     output_dir.mkdir(exist_ok=True)
 

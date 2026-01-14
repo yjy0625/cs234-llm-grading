@@ -320,7 +320,7 @@ def main() -> None:
                 print("===== END DRY-RUN PROMPT =====")
                 breakpoint()
                 raw_text = "\n\n".join(
-                    format_block(t["part"].label, f"Placeholder for {t['target_rubric']}" ) for t in targets
+                    format_block(t["part"].label, f"Placeholder for {t['target_rubric']}") for t in targets
                 )
                 rendered = parse_and_render(question, raw_text)
                 question_segments[question.key].append(rendered)
