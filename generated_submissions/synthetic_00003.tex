@@ -1,0 +1,127 @@
+%%%%% Start of 1(a) %%%%%
+Yes, for some horizons the best way to maximize total reward can involve mixing actions. For instance, with a slightly longer horizon you could sell a few times to collect +1 rewards, then buy once to avoid getting stuck at 0, and sell again to get another +1. So there are values of \(H\) where an optimal (or at least reward-maximizing) execution would include both buying and selling.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+No, because eventually the +100 for reaching \(s=10\) is so large that even with discounting it will dominate the repeated +1’s from selling, so the optimal policy will still try to fully stock at some point.
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes. For example, \(\gamma = 0\) can match a finite-horizon problem like \(H=1\).
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+No, not always. Finite-horizon optimal policies can depend on how many steps are left (non-stationary), while an infinite-horizon discounted optimal policy can be chosen stationary, so you can’t in general match every \(H\) with some \(\gamma\).
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+Under the proxy reward “maximize mean velocity of all cars,” the AI car can increase the average by simply not contributing any low-speed driving at all. If it merges, it may have to accelerate from a low speed and spend time below the highway’s speed, which drags down the mean. By parking, it avoids ever having low velocity, so the remaining cars’ higher speeds dominate the average.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+A proxy that better matches “everyone makes progress” is to reward throughput, e.g., \(r=\) (number of cars that pass a checkpoint per minute), which encourages the AI to eventually enter the flow. Another option is to add a progress-to-goal term for the AI car, like \(r = \bar v_{\text{all}} + \lambda\,\Delta(\text{distance-to-destination of AI})\), so sitting still is penalized. You could also use a fairness-style reward such as \(r=\min_c v(c)\) or \(r=-\mathrm{Var}_c(v(c))\) to discourage extreme slowdowns, though the AI might still choose not to merge if it can avoid being the minimum.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s)-(B^\pi V')(s)=\gamma \sum_{s'} p(s'|s,\pi(s))\big(V(s')-V'(s')\big).
+\]
+Taking absolute values and using that a convex combination is bounded by the max,
+\[
+\left|(B^\pi V)(s)-(B^\pi V')(s)\right|
+\le \gamma \sum_{s'} p(s'|s,\pi(s))\, |V(s')-V'(s')|
+\le \gamma \|V-V'\|.
+\]
+Now taking max over \(s\) gives
+\[
+\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|.
+\]
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Let \(V\) and \(V'\) be fixed points of \(B^\pi\), so \(V=B^\pi V\) and \(V'=B^\pi V'\). Then
+\[
+\|V-V'\|=\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|.
+\]
+Rearranging gives \((1-\gamma)\|V-V'\|\le 0\). Since \(1-\gamma>0\), we must have \(\|V-V'\|=0\), hence \(V=V'\) (componentwise). Therefore the fixed point is unique.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+\(B^\pi\) is monotone because it’s a contraction.
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+\(\|BV - V\| = 0\) iff \(BV - V = 0\) (since the max norm is zero only for the zero vector), i.e. iff \(BV = V\). So \(V\) is a fixed point of the Bellman optimality operator \(B\). The operator \(B\) has a unique fixed point, namely the optimal value function \(V^*\). Therefore \(\|BV - V\|=0\) iff \(V=V^*\).
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+First bound (for a fixed \(\pi\)). Using \(V^\pi = B^\pi V^\pi\),
+\[
+\|V-V^\pi\| = \|V-B^\pi V^\pi\|
+\le \|V-B^\pi V\| + \|B^\pi V - B^\pi V^\pi\|.
+\]
+By contraction of \(B^\pi\), \(\|B^\pi V - B^\pi V^\pi\|\le \gamma \|V-V^\pi\|\). Hence
+\[
+\|V-V^\pi\| \le \|V-B^\pi V\| + \gamma \|V-V^\pi\|.
+\]
+So \((1-\gamma)\|V-V^\pi\|\le \|V-B^\pi V\|\), i.e.
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}.
+\]
+
+Second bound (optimal case). Using \(V^* = BV^*\) and the same steps with \(B\) (which is also a \(\gamma\)-contraction in max norm),
+\[
+\|V-V^*\| \le \|V-BV\| + \|BV-BV^*\|
+\le \|V-BV\| + \gamma \|V-V^*\|.
+\]
+Rearrange to get
+\[
+\|V-V^*\|\le \frac{\|V-BV\|}{1-\gamma}.
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\). Then by definition of greediness, \(BV = B^\pi V\). Let \(\varepsilon := \|BV - V\|\). Then \(\|B^\pi V - V\|=\varepsilon\) as well.
+
+Apply part (e) twice:
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}=\frac{\varepsilon}{1-\gamma},
+\qquad
+\|V-V^*\|\le \frac{\|V-BV\|}{1-\gamma}=\frac{\varepsilon}{1-\gamma}.
+\]
+By triangle inequality,
+\[
+\|V^*-V^\pi\|\le \|V^*-V\|+\|V-V^\pi\|\le \frac{2\varepsilon}{1-\gamma}.
+\]
+Also \(V^\pi \le V^*\) componentwise (optimality of \(V^*\)), so this implies the one-sided performance bound
+\[
+V^\pi(s) \ge V^*(s) - \frac{2\varepsilon}{1-\gamma}\quad \forall s.
+\]
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+Bellman residual bounds are useful because they can certify how good a policy is.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+No. Two value functions can have the same Bellman error \(\|BV-V\|\) but still be very different (and induce different greedy policies). Equal Bellman error only implies each one is within the corresponding residual-based bound of \(V^*\); it does not imply the value functions (or their greedy policies) are equal.
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^* \le V\) componentwise, and let \(\pi\) be greedy w.r.t. \(V\). Then \(BV = B^\pi V\). Let \(\varepsilon := \|BV - V\|\), so \(\|B^\pi V - V\|=\varepsilon\).
+
+From part (e),
+\[
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma}.
+\]
+Now use the ordering \(V^\pi \le V^* \le V\) (since \(V^*\) is optimal and \(V^*\le V\) by assumption). Then for each state \(s\),
+\[
+0 \le V^*(s)-V^\pi(s) \le V(s)-V^\pi(s) \le \|V-V^\pi\|.
+\]
+Combining with the previous inequality yields
+\[
+V^*(s)-V^\pi(s) \le \frac{\varepsilon}{1-\gamma}\quad \forall s,
+\]
+equivalently \(V^\pi(s) \ge V^*(s) - \frac{\varepsilon}{1-\gamma}\).
+%%%%% End of 3(i) %%%%%

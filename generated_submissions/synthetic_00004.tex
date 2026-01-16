@@ -1,0 +1,139 @@
+%%%%% Start of 1(a) %%%%%
+Yes. For example, with \(H=5\) starting from \(s=3\), an optimal policy can sell three times (getting \(+3\) and reaching \(s=0\)), then buy once (to \(s=1\), reward \(0\)), then sell once more (getting \(+1\)). This uses both actions and achieves total reward \(4\), and you can’t do better in 5 steps because reaching \(s=10\) is impossible from \(s=3\) within 5 steps and each sell yields at most \(+1\) per step.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+Yes. If \(\gamma=0\) (or very close to 0), the agent effectively only values immediate reward, so it will prefer selling (immediate \(+1\)) over buying (immediate \(0\)), and thus will never take the long sequence of buys needed to reach \(s=10\) and collect the delayed \(+100\).
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes. For example, \(\gamma=0\) makes the infinite-horizon discounted objective depend only on the immediate reward at the current step, which matches a finite-horizon problem with \(H=1\). In both cases, starting from \(s=3\) the optimal action is to sell (since it gives immediate reward \(+1\) while buy gives \(0\)).
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+No. A finite-horizon optimal policy can be non-stationary (the best action in the same state can depend on how many steps are left), while an infinite-horizon \(\gamma\)-discounted optimal policy can be chosen stationary; therefore you cannot, for every \(H\), always find a \(\gamma\) that makes the optimal policies coincide.
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+If the red car merges, the human-driven cars on the highway have to brake/leave gaps to accommodate it, which lowers their speeds and reduces the mean velocity across all cars. By instead parking and not entering the highway, the red car contributes a low (near-zero) speed but allows all the grey cars to maintain high speed, so the overall average velocity is higher under the proxy reward. Thus the proxy-optimal policy is to never merge.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+Use a reward that penalizes creating very slowdowns, e.g. \(r(s)=\min_{c} v(c)\) (or equivalently maximize the minimum velocity), so the agent is incentivized to avoid making any car crawl while still needing to keep itself moving. Another option is \(r(s)=\frac{1}{|C|}\sum_{c} v(c)-\lambda\,\text{(hard-braking events)}\), which discourages disruptive merges but doesn’t make “parking forever” optimal because the red car’s own low speed and induced braking are penalized. You could also add a progress/throughput term for the red car, e.g. \(r(s)=\frac{1}{|C|}\sum_c v(c)+\beta\,\Delta x_{\text{red}}\), ensuring it has incentive to actually enter and travel.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s)-(B^\pi V')(s)=\gamma \sum_{s'} p(s'|s,\pi(s))\big(V(s')-V'(s')\big).
+\]
+Taking absolute values and using that probabilities sum to 1,
+\[
+\left|(B^\pi V)(s)-(B^\pi V')(s)\right|
+\le \gamma \sum_{s'} p(s'|s,\pi(s))\, |V(s')-V'(s')|
+\le \gamma \|V-V'\|.
+\]
+Now take max over \(s\) to get
+\[
+\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|.
+\]
+(One can also argue the other direction similarly, but the absolute value already handles it.)
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Let \(V\) and \(V'\) be two fixed points of \(B^\pi\), so \(V=B^\pi V\) and \(V'=B^\pi V'\). Then
+\[
+\|V-V'\|=\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|.
+\]
+Since \(0\le \gamma<1\), this implies \((1-\gamma)\|V-V'\|\le 0\), hence \(\|V-V'\|=0\) and therefore \(V=V'\) (componentwise).
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+\(B^\pi\) is monotone because it is linear in \(V\) and has nonnegative transition probabilities, so increasing \(V\) should increase \(B^\pi V\). Therefore if \(V\le V'\) then \(B^\pi V \le B^\pi V'\).
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+\(\|BV - V\|=0\) means \(\max_s |(BV)(s)-V(s)|=0\). That can only happen if \((BV)(s)-V(s)=0\) for every state \(s\), i.e. \(BV=V\). So this occurs exactly when \(V\) satisfies the Bellman optimality equation (is unchanged by one Bellman optimality backup).
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+First bound (policy evaluation residual). Using that \(V^\pi\) is a fixed point of \(B^\pi\) (i.e. \(V^\pi=B^\pi V^\pi\)),
+\[
+\|V-V^\pi\|=\|V-B^\pi V^\pi\|
+\le \|V-B^\pi V\|+\|B^\pi V-B^\pi V^\pi\|.
+\]
+By contraction of \(B^\pi\) from part (a),
+\[
+\|B^\pi V-B^\pi V^\pi\|\le \gamma \|V-V^\pi\|.
+\]
+So
+\[
+\|V-V^\pi\|\le \|V-B^\pi V\|+\gamma \|V-V^\pi\|
+\]
+and rearranging,
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}.
+\]
+
+Second bound (optimality residual). Similarly, \(V^*\) is a fixed point of \(B\): \(V^*=BV^*\). Then
+\[
+\|V-V^*\|=\|V-BV^*\|\le \|V-BV\|+\|BV-BV^*\|.
+\]
+Using that \(B\) is also a \(\gamma\)-contraction in \(\|\cdot\|_\infty\),
+\[
+\|BV-BV^*\|\le \gamma \|V-V^*\|.
+\]
+Thus
+\[
+\|V-V^*\|\le \|V-BV\|+\gamma \|V-V^*\|
+\quad\Rightarrow\quad
+\|V-V^*\|\le \frac{\|V-BV\|}{1-\gamma}.
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\). Then by definition of greedy, for every \(s\),
+\[
+(BV)(s)=\max_a \Big[r(s,a)+\gamma \sum_{s'}p(s'|s,a)V(s')\Big]
+= r(s,\pi(s))+\gamma \sum_{s'}p(s'|s,\pi(s))V(s')=(B^\pi V)(s),
+\]
+so \(BV=B^\pi V\). Let \(\varepsilon=\|BV-V\|\), hence also \(\varepsilon=\|B^\pi V-V\|\).
+
+From part (e),
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}=\frac{\varepsilon}{1-\gamma},
+\qquad
+\|V-V^*\|\le \frac{\|V-BV\|}{1-\gamma}=\frac{\varepsilon}{1-\gamma}.
+\]
+By triangle inequality,
+\[
+\|V^*-V^\pi\|\le \|V^*-V\|+\|V-V^\pi\|\le \frac{2\varepsilon}{1-\gamma}.
+\]
+Since \(V^\pi\le V^*\) componentwise, this gives the one-sided performance guarantee
+\[
+V^\pi(s)\ge V^*(s)-\frac{2\varepsilon}{1-\gamma}\quad\text{for all }s.
+\]
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+Example: in a hospital treatment-planning MDP (choosing interventions over time), you might learn an approximate value function \(V\) from historical data and deploy the greedy policy \(\pi\). The bound in (f) gives a certified lower bound on how far the deployed policy’s expected patient outcome can be from optimal, which is useful for safety checks before real deployment.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+Yes. If two value functions have the same Bellman error, then they are equally good approximations and will induce the same greedy policy and thus the same performance (up to the same bound).
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^*\le V\) and let \(\pi\) be greedy w.r.t. \(V\). Let \(\varepsilon=\|BV-V\|\). Then as in (f), \(BV=B^\pi V\), so \(\varepsilon=\|B^\pi V-V\|\). By part (e),
+\[
+\|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+Now use the ordering \(V^\pi \le V^*\le V\). For any state \(s\),
+\[
+V^*(s)-V^\pi(s)\le V(s)-V^\pi(s)\le \|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+So we get the tighter one-sided bound
+\[
+V^\pi(s)\ge V^*(s)-\frac{\varepsilon}{1-\gamma}\quad\forall s.
+\]
+%%%%% End of 3(i) %%%%%

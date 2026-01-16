@@ -1,0 +1,151 @@
+%%%%% Start of 1(a) %%%%%
+No. From \(s=3\), any time you take a buy action you give up the chance to get an immediate \(+1\) from selling, and since reaching \(s=10\) takes many buys in a row, mixing buys and sells just wastes steps. So the optimal policy will be either “sell as much as possible” for short horizons or “only buy” for long enough horizons, but not both within the same optimal execution.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+No, for any \(\gamma>0\) the agent will eventually prefer to buy up to \(s=10\) because the \(+100\) terminal reward is so large that even when discounted it will outweigh the stream of \(+1\) rewards from selling. The only way to ignore the future completely would be \(\gamma=0\), but that’s a degenerate case where only the immediate reward matters.
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes. For example, if \(\gamma=0\), the infinite-horizon discounted objective only values the immediate reward at the current step. Starting from \(s=3\), the optimal action is to sell (get \(+1\)) and nothing after that matters, which matches the finite-horizon problem with \(H=1\) (where the agent also just chooses the single best immediate action).
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+No. A finite-horizon optimal policy can be non-stationary (it may choose different actions in the same state depending on how many steps remain), while an optimal policy for an infinite-horizon discounted MDP can be taken to be stationary. Since these policy classes don’t always align, there cannot always be a \(\gamma\) that reproduces the finite-horizon optimal policy for every \(H\).
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+If the red car merges, the human-driven cars on the highway have to brake/space out to let it in, which lowers their velocities and thus lowers the mean velocity across all cars. By instead parking and never merging, the red car’s velocity is 0 but the many grey cars can keep going near full speed, so the average velocity is higher overall. Since the proxy reward only cares about mean speed (not whether the AI reaches a destination), “do nothing” becomes optimal.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+A better-aligned reward could penalize blocking and extreme slowdowns, e.g. \(r(s)=\min_c v(c)\) or \(r(s)=\text{mean}_c\, v(c)-\lambda\,\text{Var}_c(v(c))\), which encourages the AI to merge smoothly so no one becomes the bottleneck. Another option is to add a progress/goal term for the AI car, like \(r(s)=\text{mean}_c\, v(c)+\beta\,\Delta d_{\text{AI}}\), so it can’t get high reward by staying parked. You could also include a penalty for time spent off-highway or stopped, e.g. \(-\gamma\,\mathbf{1}[v_{\text{AI}}=0]\), to discourage never merging.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+I’m not sure. Maybe since \(B^\pi\) is linear in \(V\), we can say
+\[
+\|B^\pi V - B^\pi V'\| = \gamma \|V - V'\|
+\]
+because the transition probabilities sum to 1, so it just “pulls out” of the max norm. So it should be a contraction by \(\gamma\).
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Suppose \(V\) and \(V'\) are both fixed points of \(B^\pi\), so \(V = B^\pi V\) and \(V' = B^\pi V'\). Then
+\[
+\|V - V'\| = \|B^\pi V - B^\pi V'\| \le \gamma \|V - V'\|.
+\]
+Since \(\gamma < 1\), this implies \(\|V - V'\| = 0\), so \(V = V'\). Therefore the fixed point is unique.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+Assume \(V(s) \le V'(s)\) for all \(s\). Then for any state \(s\),
+\[
+(B^\pi V)(s) = r(s,\pi(s)) + \gamma \sum_{s'} p(s'|s,\pi(s)) V(s')
+\le r(s,\pi(s)) + \gamma \sum_{s'} p(s'|s,\pi(s)) V'(s')
+= (B^\pi V')(s).
+\]
+So \(B^\pi V \le B^\pi V'\) componentwise, i.e. \(B^\pi\) is monotone. (This uses that \(p(\cdot|s,a)\ge 0\) and \(\sum_{s'} p(s'|s,a)=1\).)
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+No response provided.
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+Let \(\pi\) be any fixed deterministic policy. Since \(V^\pi\) is the fixed point of \(B^\pi\), we have \(V^\pi = B^\pi V^\pi\). Then
+\[
+\|V - V^\pi\|
+= \|V - B^\pi V^\pi\|
+\le \|V - B^\pi V\| + \|B^\pi V - B^\pi V^\pi\|.
+\]
+By contraction of \(B^\pi\),
+\[
+\|B^\pi V - B^\pi V^\pi\| \le \gamma \|V - V^\pi\|.
+\]
+So
+\[
+\|V - V^\pi\| \le \|V - B^\pi V\| + \gamma \|V - V^\pi\|
+\quad\Rightarrow\quad
+(1-\gamma)\|V - V^\pi\| \le \|V - B^\pi V\|.
+\]
+Thus
+\[
+\boxed{\;\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma}\;}
+\]
+
+Similarly, \(V^*\) is the fixed point of \(B\), so \(V^* = BV^*\). Then
+\[
+\|V - V^*\|
+= \|V - BV^*\|
+\le \|V - BV\| + \|BV - BV^*\|.
+\]
+Using that \(B\) is also a \(\gamma\)-contraction in \(\|\cdot\|_\infty\),
+\[
+\|BV - BV^*\| \le \gamma \|V - V^*\|.
+\]
+Hence
+\[
+(1-\gamma)\|V - V^*\| \le \|V - BV\|
+\quad\Rightarrow\quad
+\boxed{\;\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma}\;}
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\). Then by definition of greedy,
+\[
+BV = B^\pi V.
+\]
+Let \(\varepsilon := \|BV - V\|\). Then \(\|B^\pi V - V\| = \varepsilon\) as well.
+
+From part (e) applied to \(\pi\),
+\[
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma}.
+\]
+Also from part (e) for optimality,
+\[
+\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma}.
+\]
+Then by triangle inequality,
+\[
+\|V^* - V^\pi\| \le \|V^* - V\| + \|V - V^\pi\|
+\le \frac{\varepsilon}{1-\gamma} + \frac{\varepsilon}{1-\gamma}
+= \frac{2\varepsilon}{1-\gamma}.
+\]
+So for each state \(s\),
+\[
+V^\pi(s) \ge V^*(s) - \frac{2\varepsilon}{1-\gamma}.
+\]
+(Equivalently, \(V^*(s) - V^\pi(s) \le \frac{2\varepsilon}{1-\gamma}\).)
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+One application is “robot navigation,” where you use the bound to guarantee the greedy policy is near-optimal, so the robot won’t crash too often. The residual bound tells you the learned value function is good enough to deploy.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+No. Two value functions can have the same Bellman error \(\|BV - V\|\) but still be very different and induce different greedy policies. Equal Bellman error only implies both are within the same worst-case bound of \(V^*\), not that they are equal or equally good in every state.
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^* \le V\) componentwise and let \(\pi\) be greedy w.r.t. \(V\), so \(BV = B^\pi V\). Let \(\varepsilon = \|BV - V\| = \|B^\pi V - V\|\).
+
+From part (e),
+\[
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma}.
+\]
+Also, for a greedy policy we know \(V^\pi \le V^*\). Combining with the assumption \(V^* \le V\), we get
+\[
+V^\pi \le V^* \le V.
+\]
+So for each state \(s\),
+\[
+V^*(s) - V^\pi(s) \le V(s) - V^\pi(s) \le \|V - V^\pi\| \le \frac{\varepsilon}{1-\gamma}.
+\]
+Therefore,
+\[
+\boxed{\; \|V^* - V^\pi\| \le \frac{\varepsilon}{1-\gamma}\;}
+\]
+(or equivalently \(V^\pi(s) \ge V^*(s) - \frac{\varepsilon}{1-\gamma}\) for all \(s\)).
+%%%%% End of 3(i) %%%%%

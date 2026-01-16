@@ -1,0 +1,148 @@
+%%%%% Start of 1(a) %%%%%
+I don’t think so. From \(s=3\), if you ever take a buy, that uses up a step with 0 reward and also moves you away from being able to sell as many times as possible within the horizon. Since selling gives immediate \(+1\) whenever \(s>0\), the optimal behavior for any finite \(H\) should just be “sell until you hit \(s=0\)” (or until time runs out), rather than mixing in buys. The only reason to buy would be to try to reach \(s=10\), but from \(s=3\) that takes too many steps to be worth it compared to just collecting sell rewards.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+Yes. If \(\gamma\) is 0 (or very close to 0), the agent effectively only cares about immediate reward. Buying gives 0 immediate reward, while selling (when \(s>0\)) gives \(+1\) immediately, so the optimal policy will keep selling and won’t invest in a long sequence of buys needed to reach \(s=10\) for the delayed \(+100\).
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes: for example \(\gamma = 0\) matches a finite-horizon problem with \(H=1\).
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+I think yes: for any finite horizon \(H\), you can pick a \(\gamma\) small enough that the agent mostly cares about the first \(H\) steps, so the infinite-horizon discounted optimal policy should line up with the \(H\)-step optimal policy. In other words, discounting can “simulate” the horizon by making rewards after \(H\) steps negligible.
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+If the reward is the mean velocity of all cars, the AI car can increase this proxy reward by staying off the highway (e.g., parking), since then the remaining cars can keep moving quickly and the average stays high. If it merged, it would likely have to drive more cautiously and reduce its own speed, which would lower the mean velocity. Thus “never merge” can be optimal under this proxy objective even though it’s an undesirable outcome.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+One alternative is to reward the slowest car’s speed, e.g. \(r(s)=\min_{c} v(c)\), which encourages policies that avoid creating very slow vehicles and makes “parking forever” unattractive if it makes the minimum speed \(0\). Another option is to add an explicit progress/goal term for the AI car, e.g. \(r(s)=\frac{1}{N}\sum_c v(c) + \lambda\,\Delta d_{\text{AI}}\), where \(\Delta d_{\text{AI}}\) is the AI car’s forward distance progress each step. You could also penalize being stopped on the on-ramp/shoulder, e.g. \(r(s)=\frac{1}{N}\sum_c v(c) - \beta\,\mathbf{1}[v_{\text{AI}}<\epsilon]\), to prevent the “park to help the average” hack.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s) - (B^\pi V')(s)
+= \gamma \sum_{s'} p(s' \mid s,\pi(s))\bigl(V(s')-V'(s')\bigr).
+\]
+Taking absolute values and using that probabilities sum to 1,
+\[
+\left|(B^\pi V)(s) - (B^\pi V')(s)\right|
+\le \gamma \sum_{s'} p(s' \mid s,\pi(s)) \left|V(s')-V'(s')\right|
+\le \gamma \|V-V'\|.
+\]
+Now take the maximum over \(s\):
+\[
+\|B^\pi V - B^\pi V'\| = \max_s \left|(B^\pi V)(s)-(B^\pi V')(s)\right|
+\le \gamma \|V-V'\|.
+\]
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Let \(V\) and \(V'\) both be fixed points of \(B^\pi\). Then \(V = B^\pi V\) and \(V' = B^\pi V'\). Hence
+\[
+\|V - V'\| = \|B^\pi V - B^\pi V'\|.
+\]
+By the contraction property from part (a),
+\[
+\|B^\pi V - B^\pi V'\| \le \gamma \|V - V'\|.
+\]
+So \(\|V - V'\| \le \gamma \|V - V'\|\). Since \(0 \le \gamma < 1\), this implies \((1-\gamma)\|V-V'\| \le 0\), hence \(\|V-V'\|=0\) and therefore \(V=V'\). So the fixed point is unique.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+Assume \(V(s)\le V'(s)\) for all \(s\). Then for each \(s\),
+\[
+(B^\pi V)(s)= r(s,\pi(s)) + \gamma \sum_{s'} p(s'|s,\pi(s))V(s')
+\le r(s,\pi(s)) + \gamma \sum_{s'} p(s'|s,\pi(s))V'(s') = (B^\pi V')(s),
+\]
+since the transition probabilities are nonnegative and (informally) “summing preserves \(\le\)”. Therefore \(B^\pi\) is monotone: \(V\le V' \Rightarrow B^\pi V \le B^\pi V'\).
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+No response provided.
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+First bound (to \(V^\pi\)). Start with
+\[
+\|V - V^\pi\| = \|V - B^\pi V^\pi\|
+\le \|V - B^\pi V\| + \|B^\pi V - B^\pi V^\pi\|.
+\]
+Using contraction of \(B^\pi\),
+\[
+\|B^\pi V - B^\pi V^\pi\| \le \gamma \|V - V^\pi\|.
+\]
+So
+\[
+\|V - V^\pi\| \le \|V - B^\pi V\| + \gamma \|V - V^\pi\|.
+\]
+Rearrange:
+\[
+(1-\gamma)\|V - V^\pi\| \le \|V - B^\pi V\|
+\quad\Rightarrow\quad
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma}.
+\]
+
+Second bound (to \(V^*\)) is analogous, replacing \(B^\pi\) by \(B\):
+\[
+\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma}.
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\). Then by definition of greedy, for every \(s\),
+\[
+(BV)(s) = (B^\pi V)(s),
+\]
+so \(BV = B^\pi V\). Let \(\varepsilon := \|BV - V\|\). Then also \(\varepsilon = \|B^\pi V - V\|\).
+
+From part (e),
+\[
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma},
+\qquad
+\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma} = \frac{\varepsilon}{1-\gamma}.
+\]
+By triangle inequality,
+\[
+\|V^* - V^\pi\| \le \|V^* - V\| + \|V - V^\pi\|
+\le \frac{\varepsilon}{1-\gamma} + \frac{\varepsilon}{1-\gamma}
+= \frac{2\varepsilon}{1-\gamma}.
+\]
+Also \(V^\pi \le V^*\) componentwise (optimal dominates any policy), so this implies the one-sided performance guarantee:
+\[
+V^\pi(s) \ge V^*(s) - \frac{2\varepsilon}{1-\gamma}\quad \forall s.
+\]
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+Example: in healthcare treatment planning (e.g., an RL policy suggesting medication dosing), you may have an approximate value function from limited data. The bound in (f) gives a worst-case lower bound on how far the deployed greedy policy could be from optimal, which is useful for deciding whether the policy is safe/acceptable to deploy or whether more data/training is needed before affecting patient care.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+No. If two value functions \(V_1, V_2\) have the same Bellman error \(\|BV_i - V_i\|\), that only implies each is within the same worst-case bound of \(V^*\) (via the residual bound), but it does not imply \(V_1\) and \(V_2\) are close to each other, nor that their greedy policies are the same or have the same performance.
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^* \le V\) componentwise, and let \(\pi\) be greedy w.r.t. \(V\), so \(BV = B^\pi V\). Let \(\varepsilon := \|BV - V\| = \|B^\pi V - V\|\).
+
+From part (e),
+\[
+\|V - V^\pi\| \le \frac{\varepsilon}{1-\gamma}.
+\]
+Now use the ordering: for any policy \(\pi\), \(V^\pi \le V^*\), and by assumption \(V^* \le V\). Hence
+\[
+V^\pi \le V^* \le V \quad \Rightarrow \quad 0 \le V^*(s) - V^\pi(s) \le V(s) - V^\pi(s)\ \ \forall s.
+\]
+Taking maxima over \(s\),
+\[
+\|V^* - V^\pi\| = \max_s \bigl(V^*(s) - V^\pi(s)\bigr)
+\le \max_s \bigl(V(s) - V^\pi(s)\bigr)
+\le \|V - V^\pi\|
+\le \frac{\varepsilon}{1-\gamma}.
+\]
+So under \(V^*\le V\), the greedy-policy performance loss tightens to \(\|V^* - V^\pi\| \le \varepsilon/(1-\gamma)\).
+%%%%% End of 3(i) %%%%%

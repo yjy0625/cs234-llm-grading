@@ -1,0 +1,915 @@
+generated_at: '2026-01-14T21:15:18.397162+00:00'
+model: gpt-5.2
+temperature: 0.5
+num_variants: 10
+submissions:
+  synthetic_00000.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 3.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no specific example of gamma given that
+              works'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 2.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t explain or imply that merging would slow
+              down cars on the highway'
+            points_awarded: 1.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 1.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 18.5
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-0.5: Minor errors'
+            points_awarded: 1.5
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-5: Blank'
+            points_awarded: 0.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Concluded |V* - V^pi| without explaining one-sided
+              inequality'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t provide a real-world example where a lower
+              bound is useful'
+            points_awarded: 1.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect (answers yes) or blank'
+            points_awarded: 0.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Claims without using greediness of pi'
+            points_awarded: 4.0
+    total_points: 23.5
+  synthetic_00001.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 5.5
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-0.5: Off by one'
+            points_awarded: 1.5
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Not easier to optimize'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 17.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-3: Incorrect or did not attempt'
+            points_awarded: 0.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-1.5: Right starting idea but incorrect'
+            points_awarded: 1.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-2: Missing'
+            points_awarded: 0.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-3: Significant error, or several smaller errors'
+            points_awarded: 2.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or no attempt'
+            points_awarded: 0.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Claims without justification'
+            points_awarded: 4.0
+    total_points: 26.5
+  synthetic_00002.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 2.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Does not specify a reward function'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 22.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-1.5: Correct approach but significant error'
+            points_awarded: 1.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-1.5: Right starting idea but incorrect'
+            points_awarded: 1.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-0.5: Minor errors'
+            points_awarded: 1.5
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-0.5: Very minor error'
+            points_awarded: 4.5
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t provide a real-world example where a lower
+              bound is useful'
+            points_awarded: 1.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect (answers yes) or blank'
+            points_awarded: 0.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Minor error'
+            points_awarded: 4.0
+    total_points: 28.0
+  synthetic_00003.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 4.5
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-0.5: Off by one'
+            points_awarded: 1.5
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 3.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t explain or imply that merging would slow
+              down cars on the highway'
+            points_awarded: 1.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Car still may not merge'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 22.5
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-0.5: Missing steps or minor error(s) in proof or format'
+            points_awarded: 2.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-3: Missing or incorrect'
+            points_awarded: 0.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-0.5: Very minor error'
+            points_awarded: 4.5
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or no attempt'
+            points_awarded: 0.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step'
+            points_awarded: 4.0
+    total_points: 30.0
+  synthetic_00004.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 18.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-0.5: Missing steps or minor error(s) in proof or format'
+            points_awarded: 2.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-3: Missing or incorrect'
+            points_awarded: 0.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t mention that V is a fixed point of B'
+            points_awarded: 1.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-1: Minor error'
+            points_awarded: 4.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Minor error'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect (answers yes) or blank'
+            points_awarded: 0.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-3: Significant error, or several smaller errors'
+            points_awarded: 2.0
+    total_points: 31.0
+  synthetic_00005.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t explain or imply that merging would slow
+              down cars on the highway'
+            points_awarded: 1.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 24.25
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-2: Missing'
+            points_awarded: 0.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step (e.g. fixed point)'
+            points_awarded: 4.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-0.25: Not typeset'
+            points_awarded: 4.75
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple smaller errors'
+            points_awarded: 3.0
+    total_points: 33.25
+  synthetic_00006.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no specific example of gamma given that
+              works'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 2.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Does not specify a reward function'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 14.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-3: Incorrect or did not attempt'
+            points_awarded: 0.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t conclude that V = V*'
+            points_awarded: 1.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple minor errors'
+            points_awarded: 3.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-5: Blank or incorrect'
+            points_awarded: 0.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-5: Incorrect or blank'
+            points_awarded: 0.0
+    total_points: 20.0
+  synthetic_00007.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 1.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 1.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 23.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-1.5: Right idea but incorrect'
+            points_awarded: 1.5
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t mention that V is a fixed point of B'
+            points_awarded: 1.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-0.5: Only proved one of the two inequalities'
+            points_awarded: 4.5
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple smaller errors'
+            points_awarded: 3.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect (answers yes) or blank'
+            points_awarded: 0.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 28.0
+  synthetic_00008.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 2.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or not attempted'
+            points_awarded: 0.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Not easier to optimize'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 21.75
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-1.5: Correct approach but significant error'
+            points_awarded: 1.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-1.5: Right starting idea but incorrect'
+            points_awarded: 1.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '-3: Significant error, or several minor errors'
+            points_awarded: 2.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Concluded bound without stating pi is greedy w.r.t.
+              V'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t provide a real-world example where a lower
+              bound is useful'
+            points_awarded: 1.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-0.25: Not typeset or unclear'
+            points_awarded: 4.75
+    total_points: 28.75
+  synthetic_00009.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 4.5
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-0.5: Off by one'
+            points_awarded: 1.5
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no explanation'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Car still may not merge'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 16.5
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-3: Incorrect or did not attempt'
+            points_awarded: 0.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-3: Incorrect or did not attempt'
+            points_awarded: 0.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '-1.5: Right idea but incorrect'
+            points_awarded: 1.5
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t conclude that V = V*'
+            points_awarded: 1.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect or no attempt'
+            points_awarded: 0.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '-2: Incorrect (answers yes) or blank'
+            points_awarded: 0.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 25.0

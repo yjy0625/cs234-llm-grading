@@ -1,0 +1,106 @@
+%%%%% Start of 1(a) %%%%%
+Yes. For example with \(H=5\), starting at \(s=3\) the agent can sell three times to get \(+3\) (ending at \(s=0\)), then buy once (no reward), then sell once more for \(+1\). This uses both actions and achieves total reward \(4\), and you can’t do better in 5 steps because the only positive per-step reward available is from selling (at most one per step), and reaching \(s=10\) is impossible from \(s=3\) within 5 steps.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+No. Since the \(+100\) reward is so large, the optimal discounted policy will always eventually try to buy up to \(s=10\) and collect it, regardless of \(\gamma\), because it dominates the small \(+1\) sell rewards.
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes, there are cases where a discounted infinite-horizon objective matches a finite-horizon one, e.g., when the discounting effectively makes only the immediate step matter, so the optimal action agrees with a very short finite horizon.
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+No. A finite-horizon optimal policy can depend on how many steps are left (non-stationary), while an optimal policy for an infinite-horizon discounted MDP with fixed \(\gamma\) can be taken to be stationary, so you can’t match every horizon \(H\) with some \(\gamma\).
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+The AI car might choose not to merge because merging could cause it to get stuck behind slower cars or have to brake a lot, which lowers its own speed. By staying off the highway, it avoids those slowdowns and can keep its velocity higher relative to what it would be if it merged. So under a “maximize mean velocity” objective, it can look better to just wait rather than enter traffic.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+Instead of mean velocity, we could reward “smooth traffic” by encouraging low braking/acceleration and fewer stop-and-go waves, which would make merging desirable if it reduces disruptions. Another idea is to add a penalty for blocking ramps or for time spent stopped when there is a safe gap to merge, so the car can’t get high reward by parking forever. We could also include a term for successful progress toward the destination (e.g., distance along the planned route per unit time) so the car is incentivized to actually enter the highway and move forward.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s) - (B^\pi V')(s)
+= \gamma \sum_{s'} p(s'|s,\pi(s))\big(V(s')-V'(s')\big).
+\]
+Taking absolute values and using that probabilities sum to 1,
+\[
+\big|(B^\pi V)(s) - (B^\pi V')(s)\big|
+\le \gamma \sum_{s'} p(s'|s,\pi(s))\, |V(s')-V'(s')|
+\le \gamma \|V-V'\|.
+\]
+Now take the max over \(s\) to get
+\[
+\|B^\pi V - B^\pi V'\| \le \gamma \|V-V'\|.
+\]
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+The fixed point is unique because \(B^\pi\) is a contraction, so it can’t have two different fixed points. Intuitively, if there were two fixed points \(V\) and \(V'\), applying \(B^\pi\) would pull them closer by a factor \(\gamma<1\), but fixed points don’t move, so that’s impossible unless they’re the same.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+Assume \(V(s)\le V'(s)\) for all \(s\). Then for any \(s\),
+\[
+(B^\pi V)(s)= r(s,\pi(s))+\gamma \sum_{s'} p(s'|s,\pi(s))V(s')
+\le r(s,\pi(s))+\gamma \sum_{s'} p(s'|s,\pi(s))V'(s')
+= (B^\pi V')(s),
+\]
+since the transition probabilities are nonnegative and sums preserve inequalities. Hence \(B^\pi\) is monotone: \(V\le V' \implies B^\pi V \le B^\pi V'\).
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+\(\|BV - V\|=0\) iff \(BV - V\) is the zero vector, i.e. iff \(BV = V\). So this happens exactly when \(V\) is a fixed point of the Bellman optimality operator \(B\).
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+Let \(\varepsilon_\pi := \|V - B^\pi V\|\). Using that \(V^\pi\) is a fixed point of \(B^\pi\) (so \(V^\pi = B^\pi V^\pi\)),
+\[
+\|V - V^\pi\|
+= \|V - B^\pi V^\pi\|
+\le \|V - B^\pi V\| + \|B^\pi V - B^\pi V^\pi\|
+\le \varepsilon_\pi + \gamma \|V - V^\pi\|.
+\]
+Rearrange:
+\[
+(1-\gamma)\|V - V^\pi\| \le \varepsilon_\pi
+\quad\Rightarrow\quad
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma}.
+\]
+
+Similarly, letting \(\varepsilon := \|V - BV\|\) and using \(V^* = BV^*\),
+\[
+\|V - V^*\|
+\le \|V - BV\| + \|BV - BV^*\|
+\le \varepsilon + \gamma \|V - V^*\|.
+\]
+Thus
+\[
+\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma}.
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+I’m not sure. If \(\pi\) is greedy with respect to \(V\), then \(BV = B^\pi V\). Let \(\varepsilon = \|BV - V\|\). I think you can combine the residual bounds to get something like
+\[
+\|V^* - V^\pi\| \le \frac{2\varepsilon}{1-\gamma},
+\]
+and then argue this implies a lower bound \(V^\pi(s) \ge V^*(s) - \frac{2\varepsilon}{1-\gamma}\), but I’m not fully confident about the one-sided step.
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+One example is in healthcare treatment planning: before deploying a learned policy for dosing or scheduling interventions, you can use the bound to certify that the greedy policy’s expected outcome is within some guaranteed margin of optimal, ensuring it meets a minimum acceptable performance level even if the value estimate \(V\) is imperfect.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+No. Two value functions can have the same Bellman error \(\|BV - V\|\) but still be very different and induce different greedy policies. Equal Bellman error only implies both are within the same worst-case bound of \(V^*\); it does not imply the value functions (or their greedy policies) are equal or even close to each other.
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+I don’t know how to prove the tighter bound. I think the assumption \(V^* \le V\) should let you turn a two-sided norm bound into a one-sided inequality, but I’m not sure how to connect it cleanly to the greedy policy and the residual \(\|BV - V\|\).
+%%%%% End of 3(i) %%%%%

@@ -1,0 +1,113 @@
+%%%%% Start of 1(a) %%%%%
+No. From \(s=3\), any time you take a buy action you give up a chance to sell and get \(+1\) immediately, and you also can’t reach \(s=10\) fast enough from \(s=3\) to make buying worth it within a finite horizon. So an optimal policy would just sell as much as possible (until hitting \(s=0\)) and then do anything with the remaining steps, meaning it would not include both buy and sell in an optimal execution.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+No. For any \(\gamma \in [0,1)\), eventually buying up to \(s=10\) gives a huge \(+100\) reward, and since you can always choose to buy repeatedly to reach it, the discounted return from that terminal reward will still dominate compared to endlessly selling for \(+1\) per step. So the optimal policy will always fully stock at some point rather than avoid \(s=10\) forever.
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+Yes. For example, when \(\gamma=0\), the agent only cares about the immediate reward on the very next step, which matches the behavior of a finite-horizon problem where only the first step matters (so it aligns with a horizon-1 style objective).
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+No. Finite-horizon optimal policies can be non-stationary (the best action from the same state can change depending on how many steps remain), while an infinite-horizon \(\gamma\)-discounted optimal policy can be taken to be stationary (time-independent). Because of this mismatch, there are horizons \(H\) whose optimal behavior cannot be reproduced by any single fixed \(\gamma\).
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+If the reward is the mean velocity of all cars, the AI car can increase that average by staying off the highway and not interacting with traffic. Merging would force the AI car to slow down to fit into a gap, which lowers its own velocity and thus the overall mean. So “parking” avoids any low-velocity time and looks optimal under this proxy.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+I’m not sure. Maybe give a reward for the AI car being on the highway and moving forward, like +1 per timestep it is driving, and a penalty if it is stopped. Or reward reaching a waypoint on the highway so it can’t just park. Another idea is to penalize time spent not merging after arriving at the on-ramp.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s)-(B^\pi V')(s)=\gamma \sum_{s'}p(s'|s,\pi(s))\big(V(s')-V'(s')\big).
+\]
+Taking absolute values and using that probabilities sum to 1,
+\[
+\left|(B^\pi V)(s)-(B^\pi V')(s)\right|
+\le \gamma \sum_{s'}p(s'|s,\pi(s))\,|V(s')-V'(s')|
+\le \gamma \|V-V'\|.
+\]
+Taking max over \(s\) gives \(\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|\). (Strictly, one can also repeat the argument swapping \(V,V'\) to justify the absolute value bound, but it’s essentially the same inequality.)
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Let \(V\) and \(V'\) be two fixed points of \(B^\pi\). Then \(V=B^\pi V\) and \(V'=B^\pi V'\). Hence
+\[
+\|V-V'\|=\|B^\pi V-B^\pi V'\|\le \gamma \|V-V'\|
+\]
+by part (a). Since \(0\le \gamma<1\), this implies \((1-\gamma)\|V-V'\|\le 0\), so \(\|V-V'\|=0\), i.e. \(V=V'\). Thus the fixed point is unique.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+Assume \(V(s)\le V'(s)\) for all \(s\). Then for each \(s\),
+\[
+(B^\pi V)(s)=r(s,\pi(s))+\gamma\sum_{s'}p(s'|s,\pi(s))V(s')
+\le r(s,\pi(s))+\gamma\sum_{s'}p(s'|s,\pi(s))V'(s')=(B^\pi V')(s),
+\]
+since the transition probabilities are nonnegative and preserve the pointwise order under expectation. Therefore \(B^\pi\) is monotone. (This uses \(p(\cdot|s,a)\ge 0\) and \(\sum_{s'}p=1\).)
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+\(\|BV-V\|=0\) iff \(BV-V\) is the zero vector, i.e. iff \(BV=V\). So this happens exactly when \(V\) is a fixed point of the Bellman optimality operator \(B\). In that case \(V\) must equal the optimal value function \(V^*\) (the unique fixed point of \(B\)).
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+No response provided.
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\). Then by definition of greediness, for every \(s\),
+\[
+(BV)(s)=\max_a\Big[r(s,a)+\gamma\sum_{s'}p(s'|s,a)V(s')\Big]
+= r(s,\pi(s))+\gamma\sum_{s'}p(s'|s,\pi(s))V(s')=(B^\pi V)(s),
+\]
+so \(BV=B^\pi V\). Let \(\varepsilon=\|BV-V\|=\|B^\pi V-V\|\).
+
+Using the residual bound idea (as in part (e)), we have
+\[
+\|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}
+\quad\text{and}\quad
+\|V-V^*\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+Then by triangle inequality,
+\[
+\|V^*-V^\pi\|\le \|V^*-V\|+\|V-V^\pi\|\le \frac{2\varepsilon}{1-\gamma}.
+\]
+This gives a uniform bound on the difference. In particular, for each state \(s\),
+\[
+V^\pi(s)\ge V^*(s)-\frac{2\varepsilon}{1-\gamma}.
+\]
+(Here I’m using the norm bound to conclude a per-state lower bound; I’m not separately justifying the one-sided relation beyond that.)
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+This kind of bound is useful in robotics: if you learn an approximate value function \(V\) from data, the greedy policy w.r.t. \(V\) comes with a guarantee like “its return is within \(\frac{2\varepsilon}{1-\gamma}\) of optimal,” which can be used as a sanity check before deploying the controller on a real robot.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+Yes: if two value functions have the same Bellman error \(\|BV-V\|\), then they should induce equally good greedy policies (so they are essentially equivalent in quality).
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^*\le V\) pointwise and let \(\pi\) be greedy w.r.t. \(V\). Let \(\varepsilon=\|BV-V\|\). Then we want a tighter bound than the \(2\varepsilon/(1-\gamma)\) type.
+
+From the residual bound for a fixed policy (as in part (e)), we have
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}.
+\]
+Also, since \(\pi\) is greedy w.r.t. \(V\), \(B^\pi V=BV\), so \(\|V-B^\pi V\|=\|V-BV\|=\varepsilon\). Hence
+\[
+\|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+Now using the assumption \(V^*\le V\) and also the standard fact \(V^\pi\le V^*\), we get \(V^\pi\le V^*\le V\), so for each \(s\),
+\[
+0\le V^*(s)-V^\pi(s)\le V(s)-V^\pi(s)\le \|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+Therefore \(V^\pi(s)\ge V^*(s)-\frac{\varepsilon}{1-\gamma}\) for all \(s\).
+%%%%% End of 3(i) %%%%%

@@ -1,0 +1,131 @@
+%%%%% Start of 1(a) %%%%%
+Yes. For example, with \(H=5\) starting from \(s=3\), an optimal policy can sell three times to get to \(s=0\) (earning \(+3\)), then buy once to go to \(s=1\) (earning \(0\)), then sell once more (earning \(+1\)), for a total of \(+4\). You can’t do better than \(4\) here because at most one unit of reward can be earned per time step and buying gives \(0\) reward.
+%%%%% End of 1(a) %%%%%
+
+%%%%% Start of 1(b) %%%%%
+Yes. If \(\gamma\) is \(0\) (or very close to \(0\)), the agent heavily prioritizes immediate rewards, so it will prefer selling now for \(+1\) rather than buying repeatedly (getting \(0\) for many steps) to eventually reach the delayed \(+100\) at \(s=10\). In that case, the optimal policy from \(s=3\) can keep selling and never fully stock.
+%%%%% End of 1(b) %%%%%
+
+%%%%% Start of 1(c) %%%%%
+No, there is no \(\gamma\) that makes the infinite-horizon discounted optimal policy exactly match a finite-horizon optimal policy in this MDP, because the finite-horizon policy depends on how many steps are left while the discounted infinite-horizon optimal policy does not.
+%%%%% End of 1(c) %%%%%
+
+%%%%% Start of 1(d) %%%%%
+Yes, for any finite horizon \(H\) you can pick some \(\gamma\) so that the discounted infinite-horizon optimal policy matches the finite-horizon one, since discounting can be tuned to “care” about roughly the next \(H\) steps and ignore later rewards.
+%%%%% End of 1(d) %%%%%
+
+%%%%% Start of 2(a) %%%%%
+The AI car might not merge because it “learns” that staying off the highway avoids interacting with the other cars and reduces the chance of getting stuck in traffic. If it merges, it could end up in a congested lane and have to brake a lot, which lowers its speed. So it chooses the safer option of not entering the highway at all.
+%%%%% End of 2(a) %%%%%
+
+%%%%% Start of 2(b) %%%%%
+A different reward could be based on safety or comfort, like penalizing hard braking/acceleration (e.g., reward = average speed − λ·(jerk magnitude)). Another option is to reward progress toward the destination per unit time (distance-to-go decreasing), which encourages actually moving rather than waiting. You could also include a penalty for being stopped on the on-ramp for too long, so the car is incentivized to merge eventually.
+%%%%% End of 2(b) %%%%%
+
+%%%%% Start of 3(a) %%%%%
+For any state \(s\),
+\[
+(B^\pi V)(s)-(B^\pi V')(s)=\gamma\sum_{s'}p(s'|s,\pi(s))\big(V(s')-V'(s')\big).
+\]
+Taking absolute values and using that probabilities sum to 1,
+\[
+\left|(B^\pi V)(s)-(B^\pi V')(s)\right|
+\le \gamma\sum_{s'}p(s'|s,\pi(s))\left|V(s')-V'(s')\right|
+\le \gamma \|V-V'\|.
+\]
+Maximizing over \(s\) gives
+\[
+\|B^\pi V-B^\pi V'\|\le \gamma\|V-V'\|.
+\]
+%%%%% End of 3(a) %%%%%
+
+%%%%% Start of 3(b) %%%%%
+Let \(V\) and \(V'\) be two fixed points of \(B^\pi\), so \(V=B^\pi V\) and \(V'=B^\pi V'\). Then
+\[
+\|V-V'\|=\|B^\pi V-B^\pi V'\|\le \gamma\|V-V'\|.
+\]
+Since \(0\le \gamma<1\), this implies \((1-\gamma)\|V-V'\|\le 0\), hence \(\|V-V'\|=0\) and therefore \(V=V'\). So the fixed point is unique.
+%%%%% End of 3(b) %%%%%
+
+%%%%% Start of 3(c) %%%%%
+Assume \(V(s)\le V'(s)\) for all \(s\). Then for each \(s\),
+\[
+(B^\pi V)(s)=r(s,\pi(s))+\gamma\sum_{s'}p(s'|s,\pi(s))V(s').
+\]
+Because \(V(s')\le V'(s')\), we have \(\sum_{s'}p(\cdot)V(s') \le \sum_{s'}p(\cdot)V'(s')\). So
+\[
+(B^\pi V)(s)\le r(s,\pi(s))+\gamma\sum_{s'}p(s'|s,\pi(s))V'(s')=(B^\pi V')(s).
+\]
+Thus \(B^\pi\) is monotone.
+%%%%% End of 3(c) %%%%%
+
+%%%%% Start of 3(d) %%%%%
+\(\|BV - V\| = 0\) holds exactly when \(BV - V\) is the zero vector, i.e. when \(BV = V\).
+%%%%% End of 3(d) %%%%%
+
+%%%%% Start of 3(e) %%%%%
+Let \(\varepsilon_\pi := \|V-B^\pi V\|\). Using that \(V^\pi\) is a fixed point of \(B^\pi\) and the triangle inequality,
+\[
+\|V-V^\pi\|=\|V-B^\pi V^\pi\|\le \|V-B^\pi V\|+\|B^\pi V-B^\pi V^\pi\|.
+\]
+By contraction of \(B^\pi\),
+\[
+\|B^\pi V-B^\pi V^\pi\|\le \gamma\|V-V^\pi\|.
+\]
+So
+\[
+\|V-V^\pi\|\le \varepsilon_\pi+\gamma\|V-V^\pi\|
+\quad\Rightarrow\quad
+(1-\gamma)\|V-V^\pi\|\le \varepsilon_\pi
+\quad\Rightarrow\quad
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}.
+\]
+%%%%% End of 3(e) %%%%%
+
+%%%%% Start of 3(f) %%%%%
+Let \(\pi\) be greedy w.r.t. \(V\), so \(BV = B^\pi V\). Define \(\varepsilon := \|BV - V\|=\|B^\pi V - V\|\).
+
+From the bound in part (e) applied to \(\pi\),
+\[
+\|V - V^\pi\| \le \frac{\varepsilon}{1-\gamma}.
+\]
+Also, using the same style of argument but with the optimality operator \(B\) and its fixed point \(V^*\), one gets
+\[
+\|V - V^*\| \le \frac{\varepsilon}{1-\gamma}.
+\]
+Then by triangle inequality,
+\[
+\|V^* - V^\pi\| \le \|V^* - V\| + \|V - V^\pi\|
+\le \frac{\varepsilon}{1-\gamma} + \frac{\varepsilon}{1-\gamma}
+= \frac{2\varepsilon}{1-\gamma}.
+\]
+So for each state \(s\),
+\[
+V^\pi(s) \ge V^*(s) - \frac{2\varepsilon}{1-\gamma}.
+\]
+%%%%% End of 3(f) %%%%%
+
+%%%%% Start of 3(g) %%%%%
+In healthcare treatment planning (an MDP where states are patient conditions and actions are treatments), a lower bound like \(V^\pi(s)\ge V^*(s)-\delta\) is useful to certify that a learned “greedy” treatment policy will not be too far from optimal before deploying it in a safety-critical setting.
+%%%%% End of 3(g) %%%%%
+
+%%%%% Start of 3(h) %%%%%
+Yes: if two value functions have the same Bellman error \(\|BV-V\|\), then they are equally good and will induce equally good (and essentially the same-quality) greedy policies.
+%%%%% End of 3(h) %%%%%
+
+%%%%% Start of 3(i) %%%%%
+Assume \(V^*\le V\) componentwise and let \(\pi\) be greedy w.r.t. \(V\), so \(BV=B^\pi V\). Let \(\varepsilon:=\|BV-V\|\).
+
+From part (e) applied to \(B^\pi\),
+\[
+\|V-V^\pi\|\le \frac{\|V-B^\pi V\|}{1-\gamma}=\frac{\varepsilon}{1-\gamma}.
+\]
+Since optimal dominates any policy, \(V^\pi\le V^*\), and by assumption \(V^*\le V\). Hence \(V^\pi \le V^* \le V\), so for each state \(s\),
+\[
+0\le V^*(s)-V^\pi(s)\le V(s)-V^\pi(s)\le \|V-V^\pi\|\le \frac{\varepsilon}{1-\gamma}.
+\]
+Therefore,
+\[
+V^\pi(s)\ge V^*(s)-\frac{\varepsilon}{1-\gamma}\quad \text{for all } s.
+\]
+%%%%% End of 3(i) %%%%%
