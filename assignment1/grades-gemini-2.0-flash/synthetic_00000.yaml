@@ -1,0 +1,75 @@
+student_file: synthetic_00000.tex
+total_points: 30.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_b:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 2.0
+    rubric_item: '-1: Car still may not merge'
+    comments: The student suggests rewarding the AI car for being on the highway and
+      moving forward, but this might still lead to the car finding other ways to maximize
+      the reward without actually merging properly. The car could drive very slowly
+      on the on-ramp.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t provide a real-world example where a lower bound is
+      useful'
+    comments: The response describes a general application of performance bounds but
+      does not specifically address a real-world application where a *lower bound*
+      on performance is particularly important. The example given is more about ensuring
+      the policy isn't too far from optimal, rather than guaranteeing a minimum level
+      of performance.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly claims that equal Bellman error implies equally
+      good greedy policies.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

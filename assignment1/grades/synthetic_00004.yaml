@@ -1,0 +1,70 @@
+student_file: synthetic_00004.tex
+total_points: 40.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t conclude that V = V*'
+    comments: The response correctly identifies that V must be a fixed point of the
+      Bellman operator, but it does not state the final conclusion that V must be
+      the unique fixed point, V*.
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly answers 'Yes'. Equal Bellman error only guarantees
+      that the performance of the induced greedy policies are within the same bound
+      of the optimal policy's performance; it does not guarantee that their performances
+      are equal.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

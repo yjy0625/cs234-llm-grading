@@ -1,0 +1,70 @@
+student_file: submission_380544094.tex
+total_points: 42.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_a:
+    max_points: 3.0
+    points_awarded: 2.5
+    rubric_item: '-0.5: Minor error'
+    comments: The overall logic is correct. However, the notation in the last two
+      steps is imprecise. After establishing the inequality in line 3, the expression
+      inside the norm is a constant vector, so its max-norm is simply the absolute
+      value of that constant, which directly gives the final result.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+    comments: The proof is correct and well-explained. There is a minor typo in the
+      justification (`V'(s') - V(s') >= 0` instead of `V'(s') - V(s) >= 0`), but the
+      mathematical steps and overall logic are flawless.
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

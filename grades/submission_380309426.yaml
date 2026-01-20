@@ -1,0 +1,70 @@
+student_file: submission_380309426.tex
+total_points: 42.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Doesn't mention that V is a fixed point of B
+    comments: 'The response correctly states that ||BV - V|| = 0 if and only if V
+      = V*, but the justification is incomplete. It shows that if V = V*, the norm
+      is zero, but it does not show the other direction: that if the norm is zero,
+      V must be a fixed point of B and therefore equal to the unique fixed point V*.'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 4.5
+    rubric_item: '-0.5: Only proved one of the two inequalities'
+    comments: The proof for the first inequality involving V^pi is complete and correct.
+      However, the argument for the second inequality involving V* is only a brief
+      sketch and contains the incorrect statement that V* = BV.
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

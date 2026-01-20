@@ -1,0 +1,73 @@
+student_file: submission_380274967.tex
+total_points: 42.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+    comments: The student correctly answers yes and provides a valid, though different
+      from the provided solution, line of reasoning. The student argues that for a
+      high discount factor (gamma close to 1), the discounted value of an infinite
+      stream of +1 rewards from a buy-sell cycle can exceed the discounted value of
+      the single +100 reward, which is a correct analysis.
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+    comments: The proposed reward function, which includes a penalty for waiting to
+      merge, is a valid and reasonable solution to the problem.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_f:
+    max_points: 5.0
+    points_awarded: 4.0
+    rubric_item: '-1: Concluded |V* - V^pi| without explaining one-sided inequality'
+    comments: The proof is correct up to the triangle inequality result. However,
+      the final step from the max-norm inequality ||V^pi - V*|| <= C to the one-sided,
+      per-state inequality V^pi(s) >= V*(s) - C is stated without justification.
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

@@ -1,0 +1,672 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+\usepackage{url}            
+\usepackage{booktabs}       
+\usepackage{amsfonts}       
+\usepackage{nicefrac}
+\usepackage{microtype}      
+\usepackage{fullpage}
+\usepackage{subcaption}
+\usepackage[most]{tcolorbox}
+\usepackage[numbers]{natbib}
+%\usepackage[textsize=tiny]{todonotes}
+\setlength{\marginparwidth}{11ex}
+
+\newcommand{\E}{\mathbb E}
+\usepackage{wrapfig}
+\usepackage{caption}
+
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage{url}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[mathscr]{euscript}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{lem}{Lemma}
+\usepackage{xcolor}
+\usepackage{nicefrac}
+\usepackage{xr}
+%\usepackage{chngcntr}
+\usepackage{apptools}
+\usepackage[page, header]{appendix}
+\AtAppendix{\counterwithin{lem}{section}}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1cm}
+\setlist[enumerate]{leftmargin=1cm}
+\newcommand*{\fnref}[1]{\textsuperscript{\ref{#1}}}
+
+
+
+\definecolor{DarkRed}{rgb}{0.75,0,0}
+\definecolor{DarkGreen}{rgb}{0,0.5,0}
+\definecolor{DarkPurple}{rgb}{0.5,0,0.5}
+\definecolor{Dark}{rgb}{0.5,0.5,0}
+\definecolor{DarkBlue}{rgb}{0,0,0.7}
+\usepackage[bookmarks, colorlinks=true, plainpages = false, citecolor = DarkBlue, urlcolor = blue, filecolor = black, linkcolor =DarkGreen]{hyperref}
+\usepackage{breakurl}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\allowdisplaybreaks[2]
+\newcommand{\prob}{\mathbb P}
+\newcommand{\Var}{\mathbb V}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\Ex}{\mathbb E}
+\newcommand{\varV}{\mathscr V}
+\newcommand{\indicator}[1]{\mathbb I\{ #1 \} }
+\newcommand{\statespace}{\mathcal S}
+\newcommand{\actionspace}{\mathcal A}
+\newcommand{\saspace}{\statespace \times \actionspace}
+\newcommand{\satspace}{\mathcal Z}
+\newcommand{\numsa}{\left|\saspace\right|}
+\newcommand{\numsat}{\left|\satspace\right|}
+\newcommand{\numS}{S}
+\newcommand{\numA}{A}
+\newcommand{\wmin}{w_{\min}}
+\newcommand{\wminc}{w'_{\min}}
+\newcommand{\range}{\operatorname{rng}}
+\newcommand{\polylog}{\operatorname{polylog}}
+\newcommand{\dspace}{\mathcal D}
+\newcommand{\numD}{|\dspace|}
+\newcommand{\numSucc}[1]{|\statespace(#1)|}
+\newcommand{\succS}[1]{\statespace(#1)}
+
+\newcommand{\reals}{\mathbb R}
+\newcommand{\const}{\textrm{const.}}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\llnp}{\operatorname{llnp}}
+\newcommand{\defeq}{:=}
+\usepackage{xspace}
+\newcommand{\algname}{UBEV\xspace}
+
+\mathtoolsset{showonlyrefs=true}
+
+\let\temp\epsilon
+\let\epsilon\varepsilon
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\Pro}{\mathbb P}
+
+\title{CS 234 Winter 2026 \\ Assignment 1 \\ Due: January 16th 2026 at 6:00 pm (PST) \\
+Sunid: 
+}
+\date{}
+
+\begin{document}
+  \maketitle
+
+\noindent\textbf{Submission Instructions (Please follow these exactly)}
+
+\medskip
+
+Please typeset the written part of your homework using the template that we have provided in Latex. You will need to submit the homework in three separate parts:
+\begin{itemize}
+    \item \textbf{Assignment 1 Written (PDF file):} Submit a PDF version of your \LaTeX{} file.
+    \item \textbf{Assignment 1 Written (Tex file):} Submit the raw \texttt{.tex} file.
+    \item \textbf{Assignment 1 Coding (.zip file):} Submit your coding solutions here. There is a \texttt{Makefile} provided that will help you submit the assignment. Please run \texttt{make clean} followed by \texttt{make submit} in the terminal and submit the resulting zip file on Gradescope.
+\end{itemize}
+
+
+
+
+\section{Effect of Effective Horizon [8 pts]} 
+
+Consider an agent managing inventory for a store, which is represented as an MDP. The stock level $s$ refers to the number of items currently in stock (between 0 and 10, inclusive). At any time, the agent has two actions: sell (decrease stock by one, if possible) or buy (increase stock by one, if possible).  
+\begin{itemize}
+\item If $s 
+ > 0$ and the agent sells, it receives +1 reward for the sale and the stock level transitions to $s - 1$. If $s = 0$ nothing happens.
+ \item If $s < 9$ and the agent buys, it receives no reward and the stock level transitions to $s +  1$.
+ \item The owner of the store likes to see a fully stocked inventory at the end of the day, so the agent is rewarded with $+100$ if the stock level ever reaches the maximum level $s = 10$.
+ \item $s = 10$ is also a terminal state and the problem ends if it is reached.
+\end{itemize}
+
+The reward function, denoted as $r(s, a, s')$, can be summarized concisely as follows:
+\begin{itemize}
+    \item $r(s,\text{sell}, s-1) = 1$ for $s > 0$ and $r(0,\text{sell},0) = 0$
+    \item $r(s, \text{buy}, s+1) = 0$ for $s < 9$ and $r(9, \text{buy}, 10) = 100$. The last condition indicates that transitioning from $s = 9$ to $s = 10$ (fully stocked) yields $+100$ reward.
+\end{itemize}
+
+\noindent The stock level is assumed to always start at $s = 3$ at the beginning of the day. We will consider how the agent's optimal policy changes as we adjust the finite horizon $H$ of the problem. Recall that the horizon $H$ refers to a limit on the number of time steps the agent can interact with the MDP before the episode terminates, regardless of whether it has reached a terminal state. We will explore properties of the optimal policy (the policy that achieves highest episode reward) as the horizon $H$ changes.\\
+
+\noindent Consider, for example, $H = 4$. The agent can sell for three steps, transitioning from $s = 3$ to $s = 2$ to $s = 1$ to $s = 0$ receiving rewards $+1$, $+1$, and $+1$ for each sell action. At the fourth step, the inventory is empty so it can sell or buy, receiving no reward regardless. Then the problem terminates since time has expired.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Starting from the initial state $s = 3$, it possible to a choose a value of $H$ that results in the optimal policy taking both buy and sell steps during its execution? Explain why or why not. [2 pts]
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 1(a) %%%%%
+    Yes, it is possible to choose a value of $H$ that results in the optimal policy taking both buy and sell steps during the execution. Let's choose for example $H = 5$. First, in a finite-horizon MDP with $\gamma = 1$, the optimal policy maximizes the value function which is the expected total reward. Now, if we only sell then we will transition from $s = 3$ to $s = 2$ to $s = 1$ to $s = 0$ receiving rewards $+1$, $+1$, and $+1$ for each sell action. After that, selling won't bring any reward. Our total reward is 3. If we only buy, we won't be able to reach $s=10$ and the reward will be $0$. However, let's say we start by selling three times, buying (on $s=0$) and selling again. Our reward will be $4$, which is greater than always selling (reward of $3$), or always buying (reward of $0$), which explains why we take both buy and sell steps for the optimal policy.
+    
+    %%%%% End of 1(a) %%%%%
+    \end{tcolorbox}
+    \newpage
+
+    \item In the infinite-horizon discounted setting, is it possible to choose a fixed value of $\gamma \in [0, 1)$ such that the optimal policy starting from $s = 3$ never fully stocks the inventory? You do not need to propose a specific value, but simply explain your reasoning either way. [2 pts]
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 1(b) %%%%%
+    Yes it is possible. 
+    % Arguing by contradiction, let's suppose that we can reach $s=10$ with the optimal policy starting from $s=3$. First, whenever we are at a state $s \neq 0$ it is always better to sell now than anytime in the future because $\gamma < 1$. Indeed, let's say that in our strategy, before reaching $s=10$, we sold exactly $n$ times. Then moving any sell earlier strictly increases discounted return. So every sell has to be done as early as possible. Thus we start by selling and when we reach $s=0$ we immediately buy and sell, until we have sold $n$ times. After having sold $n$ times, we are at a state $s'$ with $s' \leq 3$. Let's say we made $m$ moves to arrive to this state (with $m \geq n$). Because we reach $s=10$ and we don't sell anymore, the next (and last) value we get is $100\gamma^{9-s' +m}$ and $100\gamma^{9-s' +m} \leq 100\gamma^{6 + m}$. However, when we are in the state $s'$ buying and selling gives the value $\gamma^{m + 1}$ and for $\gamma$ such that: $\gamma^5 \leq 1/100$, we have: $\gamma^{m + 1} \geq 100\gamma^{6 + m}$. We have therefore a bigger value than the one given by the maximum policy. It is a contradiction. Therefore it is possible to choose a $\gamma$ such that we never stock the inventory.
+    In the infinite-horizon discounted setting, we know the optimal policy is stationary. If the optimal policy reaches $s=10$, it means that in every state $s$ for $s \in \{3, ..., 9\}$, we have to buy (otherwise, because the policy is stationary, if we sell in a state $s$, we would never be able to reach $s+1$ and thus couldn't reach $s=10$). Therefore the total reward is $100*\gamma^6$. However with a policy where we sell in $s \in \{1, 2, 3\}$, we would get a total reward of at least $1 + \gamma + \gamma^2$. When $\gamma \rightarrow 0$, $100*\gamma^6 \rightarrow 0$ but $1 + \gamma + \gamma^2 \rightarrow 1$. So for $\gamma$ small enough, the optimal policy starting from $s=3$ never fully stocks the inventory.
+    
+    %%%%% End of 1(b) %%%%%
+    \end{tcolorbox}
+    \newpage
+
+    \item Consider two versions of this inventory MDP. In the first version, the MDP is an \emph{infinite-horizon} MDP with discount factor $\gamma$. In the second version, the MDP is a \emph{finite-horizon} MDP with horizon $H$, no discount factor, and episodes that terminate after exactly $H$ time steps even if a terminal state has not been reached.  
+
+    Does there \textbf{ever} exist a choice of $\gamma$ such that the optimal policy for the infinite-horizon MDP is the same as the optimal policy for the finite-horizon MDP with horizon $H$? If so, give a concrete example of values of $\gamma$ and $H$ for which this holds. [2 pts]
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 1(c) %%%%%
+    Yes. Let's take $H = 1$ and $\gamma = 0.001$.
+
+    For the finite-horizon MDP, we can reach $s=10$ only starting at $s=9$. So, to maximize our reward, we buy at $s = 9$ and we sell for $s \in \{1, ..., 8\}$. We decide to buy at $s=0$ (selling wouldn't change anything). Thus we have:
+    $$\pi(s)=\begin{cases}\text{sell} & \text{if } s \in \{1, ..., 8\}\\ \text{buy} & \text{if } s \in \{0,9\} \end{cases}$$
+
+    For the infinite-horizon MDP, let's say we are at $s=9$. If we want to reach $s=10$, then we would get the reward $100$. If we wanted to keep selling, we would obtain a reward below $1 + \gamma + \gamma^2 + ... < 100$ so it is optimal to buy. At $s=8$, reaching $10$ gives a reward of $100\gamma = 0.1 < 1$ and selling immediately gives $1$. So it is optimal to sell immediately.
+    For $s\in \{1, ..., 7\}$, reaching $10$ gives a reward lower than 1 (as for $s=8$) and buying will only delay the next sale. It is optimal to sell immediately and get a $+1$ reward. At $s=0$, we decide to buy in order to sell later on.Therefore, the optimal policy in the infinite-horizon MDP is the same policy as in the finite-horizon MDP.
+
+    We could have chosen $\gamma = 0$ to make things a bit simpler and get the same results.
+    
+    %%%%% End of 1(c) %%%%%
+    \end{tcolorbox}
+    \newpage
+
+    \item Using the same setup as in part (c), does there \textbf{always} exist a discount factor $\gamma$ such that the optimal policy for the infinite-horizon MDP matches the optimal policy for the finite-horizon MDP for any $H$? Briefly justify your answer in 1--2 sentences.[2 pts]
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 1(d) %%%%%
+    The answer is no. In the finite-horizon MDP, the optimal policy depends on $H$. For example if $H=6$ and we start at $s=3$, we should sell as much as possible because we can't reach $s=10$. However when $H = 7$ we should buy at every step to reach $s=10$. The optimal policy can be non-stationary/ time dependent. But for the infinite-horizon MDP, for any $\gamma < 1$, the optimal policy is stationary. This policy does not care about how many steps are left whereas the finite-horizon policy changes and depends on H. Thus they won't always match.
+    
+    %%%%% End of 1(d) %%%%%
+    \end{tcolorbox}
+    \newpage
+
+    
+\end{enumerate}
+
+\pagebreak
+
+\section{Reward Hacking [5 pts]} 
+Q1  illustrates how the particular  horizon and discount factor may lead to 
+    to very different policies, even with the same reward and dynamics model. This may lead to unintentional reward hacking, where the resulting policy does not match a human stakeholder's intended outcome. This problem asks you to think about an example where reward hacking may occur, introduced by Pan, Bhatia and Steinhardt\footnote{ICLR 2022 \url{https://openreview.net/pdf?id=JYtwGwIL7ye}}. Consider designing RL for autonomous cars where the goal is to have decision policies that minimize the mean commute for all drivers (those driven by humans and those driven by AI). This reward might be tricky to specify (it depends on the destination of each car, etc) but a simpler reward (called the reward "proxy") is to maximize the mean velocity of all cars. Now consider a scenario where there is a single AI car (the red car in the figure) and many cars driven by humans (the grey car). 
+
+    In this setting, under this simpler "proxy" reward, the optimal policy for the red (AI) car is to park and not merge onto the highway.\footnote{Interestingly, it turns out that systems that use simpler function representations may reward hack less in this example than more complex representations. See Pan, Bhatia and Steinhardt's paper "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models" for details.}
+        \begin{figure}[h]
+    \centering
+    \includegraphics[width=3in]{commute_time.png}
+    \caption{Pan, Bhatia, Steinhardt ICLR 2022; \url{https://openreview.net/pdf?id=JYtwGwIL7ye}}
+    \label{fig:commute}
+\end{figure}
+\begin{enumerate}[label=(\alph*)]
+    \item  Explain why the optimal policy for the AI car is not to merge onto the highway. [2 pts]
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 2(a) %%%%%
+    By merging onto the highway, the red car will create some traffic. The grey cars will have to brake/slow down. Because there are many grey cars and each will slow down (by a wave effect), the mean velocity of all cars will diminish. However, if the AI car parks, only this car will have a reduced velocity but it won't slow anyone else down. The mean velocity across all cars will stay higher (if the number of grey cars is large enough).
+    %%%%% End of 2(a) %%%%%
+    \end{tcolorbox}
+    \newpage
+    \item Note this behavior is not aligned with the true reward function. Share some ideas about alternate reward functions (that are not minimizing commute) that might still be easier to optimize, but would not result in the AI car never merging. Your answer should be 2-5 sentences and can include equations: there is not a single answer and reasonable solutions will be given full credit. [3 pts]
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 2(b) %%%%%
+    An alternate reward function that might be easier to optimize and would not result in the AI car never merging could be "maximize the minimum velocity". More precisely, we aim to maximize the speed of the slowest car at each timestep. If any car has zero speed (for example if the AI car parks), then it strongly penalizes the policy. Thus, the AI car will necessarily merge onto the highway because although every other car will slow down, it is very unlikely a car has to completely stop to let another car get into the highway. With $N$ cars the equation of the reward function at time $t$ would be: $$r_t = \min_{i=1, ..., N}v_{i,t}$$ 
+    
+    %%%%% End of 2(b) %%%%%
+    \end{tcolorbox}
+    \newpage
+
+\end{enumerate}
+
+\newpage
+
+\section{Bellman Residuals and performance bounds [30 pts]}
+
+In this problem, we will study value functions and properties of the Bellman backup operator.
+\\
+
+\noindent \textbf{Definitions:} \noindent Recall that a value function is a $|S|$-dimensional vector where $|S|$ is the number of states of the MDP. When we use the term $V$ in these expressions as an ``arbitrary value function'', we mean that $V$ is an arbitrary $|S|$-dimensional vector which need not be aligned with the definition of the MDP at all. 
+On the other hand, $V^\pi$ is a value function that is achieved by some policy $\pi$ in the MDP.
+For example, say the MDP has 2 states and only negative immediate rewards. $V = [1,1]$ would be a valid choice for $V$ even though this value function can never be achieved by any policy $\pi$, but we can never have a $V^\pi = [1,1]$. This distinction between $V$ and $V^\pi$ is important for this question and more broadly in reinforcement learning.
+\\
+
+\noindent \textbf{Properties of Bellman Operators:} In the first part of this problem, we will explore some general and useful properties of the Bellman backup operator, which was introduced during lecture. We know that the Bellman backup operator $B$, defined below is a contraction with the fixed point as $V^*$, the optimal value function of the MDP. The symbols have their usual meanings. $\gamma$ is the discount factor and $0 \leq \gamma < 1$. In all parts, $\|v\| = \max_{s} | v(s) |$ is the infinity norm of the vector.
+
+\begin{equation}
+    (BV)(s) = \max_a \left( r(s, a) + \gamma\sum_{s' \in S}p(s'|s,a)V(s') \right)
+\end{equation}
+
+\noindent We also saw the contraction operator $B^\pi$ with the fixed point $V^\pi$, which is the Bellman backup operator for a particular policy given below:
+
+\begin{equation}
+    (B^\pi V)(s) = r(s,\pi(s)) + \gamma\sum_{s' \in S}p(s'|s,\pi(s))V(s')
+\end{equation}
+
+
+\noindent In this case, we'll assume $\pi$ is deterministic, but it doesn't have to be in general. In class, we showed that $|| BV - BV' || \leq \gamma ||V - V'||$ for two arbitrary value functions $V$ and $V'$. 
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that the analogous inequality, $|| B^\pi V - B^\pi V' || \leq \gamma ||V - V'||$, also holds. [3 pts].
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(a) %%%%%
+Let $s \in S$. We have
+\begin{align*}
+&| B^\pi V(s)-B^\pi V'(s)| =\\
+&\left| r(s,\pi(s))+ \gamma \sum_{s' \in S} p(s' \mid s,\pi(s)) V(s')- \left( r(s,\pi(s)) + \gamma\sum_{s' \in S} p(s'\mid s,\pi(s)) V'(s') \right) \right| \\
+&= \gamma | \sum_{s' \in S} p(s' \mid s,\pi(s)) \left( V(s') - V'(s') \right) |
+\end{align*}
+
+With the triangle inequality,
+\begin{align*}
+\left| B^\pi V(s) -B^\pi V'(s)\right|
+&\le \gamma \sum_{s' \in S} p(s'\mid s,\pi(s)) \left|V(s') - V'(s')\right|
+\end{align*}
+
+Since $\|V - V'\| = \max_{s'} |V(s') - V'(s')|$, we obtain
+\begin{align*}
+| B^\pi V(s) - B^\pi V'(s) |
+&\le \gamma \|V - V'\|\sum_{s' \in S} p(s'\mid s,\pi(s))
+\end{align*}
+
+And $\sum_{s' \in S} p(s' \mid s,\pi(s)) = 1$, so
+$$
+\left|B^\pi V(s) -B^\pi V'(s) \right| \le\gamma \|V - V'\|
+$$
+
+Since this is true for all $s \in S$, we conclude
+$$
+\| B^\pi V - B^\pi V' \| \le \gamma \|V - V'\|
+$$
+    %%%%% End of 3(a) %%%%%
+    \end{tcolorbox}
+    \newpage
+    \item Prove that the fixed point for $B^\pi$ is unique. Recall that the fixed point is defined as $V$ satisfying $V = B^\pi V$. You may assume that a fixed point exists. \textit{Hint:} Consider proof by contradiction. [3 pts].
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(b) %%%%%
+    We assume that a fixed point exists. By contradiction, we suppose there are two fixed points $V_1 \neq V_2$.
+    From part (a), we know that
+    $$
+    \|B^\pi V_1 -B^\pi V_2\| \le \gamma \|V_1- V_2\|
+    $$
+    Using the fixed point property, we have
+    $$
+    \|V_1 - V_2\| = \|B^\pi V_1 - B^\pi V_2\| \le \gamma \|V_1 - V_2\|
+    $$
+    Because $V_1 \neq V_2$, we have $\|V_1 - V_2\| > 0$, and dividing both sides by
+    $\|V_1 - V_2\|$ gives
+    $$
+    1 \le \gamma
+    $$
+    But $\gamma \in [0,1)$, which is a contradiction. Therefore, the fixed point of $B^\pi$ must be unique.
+    %%%%% End of 3(b) %%%%%
+    \end{tcolorbox}
+    \newpage
+    \item Suppose that $V$ and $V'$ are vectors satisfying $V(s) \leq V'(s)$ for all $s$. Show that $B^\pi V(s) \leq B^\pi V'(s)$ for all $s$. Note that all of these inequalities are element-wise. [3 pts].
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(c) %%%%%
+Let $s \in S$.
+$$
+(B^\pi V)(s) = r(s,\pi(s)) +\gamma \sum_{s'\in S} p(s' \mid s,\pi(s)) V(s')
+$$
+Because $V(s')\le V'(s')$ for all $s' \in S$ and $p(s' \mid s,\pi(s)) \ge 0$ and $\gamma \geq 0$, we have
+$$
+r(s,\pi(s)) + \gamma \sum_{s' \in S} p(s' \mid s,\pi(s)) V(s')
+\le
+r(s,\pi(s)) + \gamma \sum_{s' \in S} p(s' \mid s,\pi(s)) V'(s')
+$$
+Therefore,
+$$
+(B^\pi V)(s) \le (B^\pi V')(s)
+$$
+Since this holds for all $s \in S$, we have that $B^\pi V(s) \le B^\pi V'(s)$ for all $s$.
+    %%%%% End of 3(c) %%%%%
+    \end{tcolorbox}
+    \newpage
+\end{enumerate}
+
+
+\noindent \textbf{Bellman Residuals:} Having gained some intuition for value functions and the Bellman operators, we now turn to understanding how policies can be extracted and what their performance might look like. We can extract a greedy policy $\pi$ from an arbitrary value function $V$ using the equation below. 
+\begin{equation}
+    \pi(s) = \argmax_{a} [{r(s,a) + \gamma\sum_{s' \in S}p(s'|s,a)V(s')}]
+\end{equation}
+
+It is often helpful to know what the performance will be if we extract a greedy policy from an arbitrary value function. To see this, we introduce the notion of a Bellman residual.
+
+Define the Bellman residual to be $(BV - V)$ and the Bellman error magnitude to be $||BV - V||$.
+
+\begin{enumerate}
+    \item[(d)] For what value function $V$ does the Bellman error magnitude $\|BV - V \|$ equal 0? Why? [2 pts]
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(d) %%%%%
+$$
+\|BV - V\| = 0 
+\;\;\Longleftrightarrow\;\;
+BV(s)=V(s) \quad \forall s \in S
+\;\;\Longleftrightarrow\;\;
+V \text{ is the unique fixed point of } B
+$$
+
+Thus, the Bellman error magnitude equals $0$ for the fixed point of $B$ which is $V^*$.
+    %%%%% End of 3(d) %%%%%
+    \end{tcolorbox}
+    \newpage
+    \item[(e)] Prove the following statements for an arbitrary value function $V$ and any policy $\pi$.  [5 pts]\\
+    \textit{Hint:} Try leveraging the triangle inequality by inserting a zero term.
+    \begin{equation}
+        ||V - V^\pi|| \leq \frac{||V - B^\pi V||}{1-\gamma}
+    \end{equation}
+    \begin{equation}
+        ||V - V^*|| \leq \frac{||V - BV||}{1-\gamma}
+    \end{equation}
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(e) %%%%%
+\begin{align}
+\text{Because } V^\pi \text{ is the fixed point of } B^\pi,
+\|V - V^\pi\|
+&= \|V -B^\pi V^\pi\| \\
+&= \|V -B^\pi V + B^\pi V - B^\pi V^\pi\| \\
+&\le \|V -B^\pi V\| + \|B^\pi V - B^\pi V^\pi\|  \\
+& (\text{triangle inequality})\\
+&\le \|V - B^\pi V\| + \gamma \|V - V^\pi\| \\
+&(\text{contraction of } B^\pi)
+\end{align}
+Therefore,
+$$
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma}
+$$
+
+\begin{align}
+\text{Because } V^* \text{ is the fixed point of } B,
+\|V - V^*\|
+&= \|V -BV^*\| \\
+&= \|V -BV + BV - BV^*\| \\
+&\le \|V -BV\| + \|BV - BV^*\|  \\
+&(\text{triangle inequality})\\
+&\le \|V -BV\| + \gamma \|V - V^*\|  \\
+&(\text{contraction of } B)
+\end{align}
+Therefore,
+$$
+\|V - V^*\| \le \frac{\|V - BV\|}{1-\gamma}
+$$
+    %%%%% End of 3(e) %%%%%
+    \end{tcolorbox}
+    \newpage
+\end{enumerate}
+
+\noindent The result you proved in part (e) will be useful in proving a bound on the policy performance in the next few parts. Given the Bellman residual, we will now try to derive a bound on the policy performance, $V^\pi$.
+
+\begin{enumerate}
+    \item[(f)] Let $V$ be an arbitrary value function and $\pi$ be the greedy policy extracted from $V$. Let $\epsilon = ||BV-V||$ be the Bellman error magnitude for $V$. Prove the following for any state $s$. [5 pts]\\
+    \textit{Hint:} Try to use the results from part (e).
+    \begin{equation}
+        V^\pi(s) \geq V^*(s) - \frac{2\epsilon}{1-\gamma}
+    \end{equation}
+
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(f) %%%%%
+Let $s \in S$.
+
+First, using the triangular inequality, we have
+$$
+\|V^* - V^\pi\|
+= \|V^* - V + V - V^\pi\|
+\le \|V^* - V\| + \|V - V^\pi\|
+$$
+
+Using the result from part (e), we get
+$$
+\|V^* - V^\pi\|
+\le \frac{1}{1-\gamma}(\|V - BV\|+ \epsilon)
+$$
+
+For every $s$, we have (*):
+$$
+\pi(s) = \arg\max_a [ r(s,a) + \gamma \sum_{s' \in S} p(s'|s,a)V(s')]
+$$
+
+And
+\begin{align*}
+BV(s)
+&= \max_a (r(s,a)+ \gamma \sum_{s' \in S} p(s'|s,a)V(s') ) \\
+&= r(s,\pi(s)) +\gamma \sum_{s' \in S} p(s'|s,\pi(s))V(s') \qquad \text{using (*)} \\
+&= (B^\pi V)(s)
+\end{align*}
+
+Thus,
+$$
+\|V^* - V^\pi\| \le \frac{2\epsilon}{1-\gamma}
+$$
+
+For any state $s$,
+$$
+V^*(s) - V^\pi(s)
+\le \|V^* - V^\pi\|
+\le \frac{2\epsilon}{1-\gamma}.
+$$
+
+Therefore,
+$$
+V^\pi(s) \ge V^*(s) - \frac{2\epsilon}{1-\gamma}
+$$
+which is the result we wanted.
+    %%%%% End of 3(f) %%%%%
+    \end{tcolorbox}
+    \newpage
+    \item[(g)] Give an example real-world application or domain where having a lower bound on $V^\pi(s)$ would be useful. [2 pt]
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(g) %%%%%
+    For example, in the context of autonomous driving, having a lower bound on $V^\pi(s)$ would be useful in order to have some safety. We know the policy will achieve a minimum level of performance and safety for any state which is very important especially in the context of autonomous driving where safety is crucial.
+    %%%%% End of 3(g) %%%%%
+    \end{tcolorbox}\newpage
+
+    \item[(h)] Suppose we have another value function $V'$ and extract its greedy policy $\pi'$.  $\|B V' - V' \| = \epsilon = \|B V - V\|$. Does the above lower bound imply that $V^\pi(s) = V^{\pi'}(s)$ at any $s$? [2 pts]
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(h) %%%%%
+No it does not.
+
+It only gives the same lower bound for both value functions  but they don't have to be equal. 
+
+However, if $\epsilon = 0$, then $BV = V$ so $V = V^*$ and we also have $V' = V^*$. If $\pi$ is greedy, $B^\pi V^* = BV^* = V^*$ but $B^\pi$ has a unique fixed point so $V^\pi = V^*$. we also find $V^{\pi'} = V^*$ with the same argument so  $V^{\pi'} = V^{\pi}$.
+
+But when $\epsilon \neq 0$, we can have different greedy actions leading to different trajectories and we then don't necessarily have $V^{\pi'} = V^*$. Having the same Bellman residual does not force the two policies to have the same value. Indeed $V^\pi$ depends on $\pi$ which depends on $V$ and $V^{\pi'}$ depends on $V'$ which is different from $V$.
+
+    %%%%% End of 3(h) %%%%%
+    \end{tcolorbox}
+
+\end{enumerate}
+
+
+\newpage
+\noindent {A little bit more notation:} define $V \leq V'$ if $\forall s$, $V(s) \leq V'(s)$. 
+\\
+
+\noindent What if our algorithm returns a $V$ that satisfies $V^* \leq V$? I.e., it returns a value function that is better than the optimal value function of the MDP. Once again, remember that $V$ can be any vector, not necessarily achievable in the MDP but we would still like to bound the performance of $V^\pi$ where $\pi$ is extracted from said $V$. We will show that if this condition is met, then we can achieve an even tighter bound on policy performance.
+
+
+
+\begin{enumerate}
+    \item[(i)] Using the same notation and setup as part (e), if $V^* \leq V$, show the following holds for any state $s$. [5 pts]\\
+    \textit{Hint:} Recall that $\forall \pi$, $V^\pi \leq V^*$. (why?)
+    \begin{equation}
+        V^\pi(s) \geq V^*(s) - \frac{\epsilon}{1-\gamma}
+    \end{equation}
+     where $\epsilon = \|B V - V\|$  (as above) and the policy $\pi$ is the greedy policy induced by $V$. 
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(i) %%%%%
+We knows that $V^*$ is the optimal value function of the MDP. Thus by definition $V^* \ge V^\pi$ for all policies $\pi$.
+We also assume $V^* \le V$.
+
+Since $\pi$ is greedy with respect to $V$, we have for all $s$, as shown in question (f):
+$$
+(B^\pi V)(s) = (BV)(s)
+$$
+hence
+$$
+\|V - B^\pi V\| = \|V - BV\| = \epsilon
+$$
+By part (e),
+$$
+\|V - V^\pi\| \le \frac{\|V - B^\pi V\|}{1-\gamma} = \frac{\epsilon}{1-\gamma}
+$$
+
+For a state $s$, since $V^\pi(s) \le V^*(s) \le V(s)$,
+\begin{align*}
+    &V^*(s) - V^\pi(s) = V^*(s) - V(s) + V(s) - V^\pi(s) \le V(s) - V^\pi(s) \\
+& \le |V(s) - V^\pi(s)| \\
+&\le \|V - V^\pi\| \\
+&\le \frac{\epsilon}{1-\gamma}
+\end{align*}
+Thus,
+$$
+V^\pi(s) \ge V^*(s) - \frac{\epsilon}{1-\gamma}
+$$
+    %%%%% End of 3(i) %%%%%
+    \end{tcolorbox}
+\end{enumerate}
+
+\noindent \textbf{Intuition:} A useful way to interpret the results from parts (h) (and (i)) is based on the observation that a constant immediate reward of $r$ at every time-step leads to an overall discounted reward of $r + \gamma r + \gamma^2 r + \ldots = \frac{r}{1-\gamma}$. Thus, the above results say that a state value function $V$ with Bellman error magnitude $\epsilon$ yields a greedy policy whose reward per step (on average), differs from optimal by at most $2\epsilon$. So, if we develop an algorithm that reduces the Bellman residual, we're also able to bound the performance of the policy extracted from the value function outputted by that algorithm, which is very useful!
+\\
+\newpage
+\noindent \textbf{Challenges:} Try to prove the following if you're interested. \textbf{These parts will not be graded.}
+
+\begin{enumerate}
+    \item[(j)] It's not easy to show that the condition $V^* \leq V$ holds because we often don't know $V^*$ of the MDP. Show that if $BV \leq V$ then $V^* \leq V$. Note that this sufficient condition is much easier to check and does not require knowledge of $V^*$. \\
+    \textit{Hint}: Try to apply induction. What is $\lim\limits_{n \rightarrow \infty} B^n V$? 
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(j) %%%%%
+We prove by induction that for all $n \ge 1$, $B^n V \le V$.
+
+\textbf{Initialization:} We already have $BV \le V$ by assumption.
+
+\textbf{Heredity:} Suppose that for some $n \ge 1$, $B^n V \le V$. Then for any state $s$ and any action $a$,
+\[
+\sum_{s' \in S} p(s' \mid s,a)\, B^n V(s')
+\;\le\;
+\sum_{s' \in S} p(s' \mid s,a)\, V(s').
+\]
+Adding $r(s,a)$ and multiplying by $\gamma \ge 0$ preserves the inequality, so taking the maximum over $a$ gives
+$$
+B^{n+1}V(s) \leq
+BV(s)
+$$
+Since $BV \le V$, we get $B^{n+1}V \le BV \le V$. Hence $B^{n+1}V \le V$.
+
+Therefore, $B^nV \le V$ for all $n \ge 1$.
+
+Now, since $V^*$ is the fixed point of $B$,
+$$
+\|B^nV - V^*\|
+=
+\|B^nV - B^nV^*\|
+\le
+\gamma^n \|V - V^*\|
+$$
+And $\gamma^n \to 0$ as $n \to \infty$, thus $\|B^nV - V^*\| \to 0$, i.e.
+$$
+B^nV \xrightarrow[n\to\infty]{} V^*
+$$
+
+We have $B^nV \le V$ for all $n \ge 1$, so by passing to the limit we obtain
+$$
+V^* \le V
+$$
+    %%%%% End of 3(j) %%%%%
+    \end{tcolorbox}
+\newpage
+\item[(k)] It is possible to make the bounds from parts (f) and (i) tighter. 
+Let $V$ be an arbitrary value function and $\pi$ be the greedy policy extracted from $V$. Let $\epsilon = ||BV-V||$ be the Bellman error magnitude for $V$. Prove the following for any state $s$:
+\begin{equation}
+        V^\pi(s) \geq V^*(s) - \frac{2\gamma\epsilon}{1-\gamma}
+\end{equation}
+Further, if $V^* \leq V$, prove for any state $s$
+\begin{equation}
+        V^\pi(s) \geq V^*(s) - \frac{\gamma\epsilon}{1-\gamma}
+\end{equation} 
+    
+    \begin{tcolorbox}[breakable]
+    %%%%% Start of 3(k) %%%%%
+
+    %%%%% End of 3(k) %%%%%
+    \end{tcolorbox}
+\end{enumerate}
+\newpage
+
+\noindent 
+
+
+\newpage
+
+\section{RiverSwim MDP [25 pts]}
+Now you will implement value iteration and policy iteration for the RiverSwim environment (see picture below\footnote{Figure copied from \href{https://proceedings.neurips.cc/paper/2013/hash/6a5889bb0190d0211a991f47bb19a777-Abstract.html}{(Osband \& Van Roy, 2013)}.}) of \href{https://www.sciencedirect.com/science/article/pii/S0022000008000767}{(Strehl \& Littman, 2008)}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{RiverSwim.png}
+    \caption{The RiverSwim MDP where dashed and solid arrows represent transitions for the \textsc{LEFT} and \textsc{RIGHT} actions, respectively. The assignment uses a modified, customizable version of what is shown above where there are three different strengths (\textsc{WEAK}, \textsc{MEDIUM}, or \textsc{STRONG}) of the current (transition probabilities for being pushed back or successfully swimming \textsc{RIGHT}).}
+    \label{fig:riverswim}
+\end{figure}
+
+\noindent \textbf{Setup:} This assignment needs to be completed with Python3 and \texttt{numpy}. 
+\\
+
+\noindent \textbf{Submission:} There is a \texttt{Makefile} provided that will help you submit the assignment. Please run \texttt{make clean} followed by \texttt{make submit} in the terminal and submit the resulting zip file on Gradescope.
+
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{(coding)} Read through \texttt{vi\_and\_pi.py} and implement \texttt{bellman\_backup}. Return the value associated with a single Bellman backup performed for an input state-action pair. [4 pts]\\
+
+
+\item \textbf{(coding)} Implement \texttt{policy\_evaluation}, \texttt{policy\_improvement} and \texttt{policy\_iteration} in  \texttt{vi\_and\_pi.py}. Return the optimal value function and the optimal policy. [8pts]\\
+
+
+\item \textbf{(coding)} Implement \texttt{value\_iteration} in \texttt{vi\_and\_pi.py}. Return the optimal value function and the optimal policy. [8 pts]\\
+
+
+\item \textbf{(written)} Run both methods on RiverSwim with a \textsc{weak} current strength and find the largest discount factor (\textbf{only} up to two decimal places) such that an optimal agent starting in the initial far-left state (state $s_1$ in Figure \ref{fig:riverswim}) \textbf{does not} swim up the river (that is, does not go \textsc{RIGHT}). Using the value you find, interpret why this behavior makes sense. Now repeat this for RiverSwim with \textsc{medium} and \textsc{strong} currents, respectively. Describe and explain the changes in optimal values and discount factors you obtain both quantitatively and qualitatively. [5 pts]\\ \\
+\textit{Sanity Check:} For RiverSwim with a discount factor $\gamma = 0.99$ and a \textsc{weak} current, the values for the left-most and right-most states ($s_1$ and $s_6$ in Figure \ref{fig:riverswim} above) are \texttt{30.328} and \texttt{36.859} when computed with a tolerance of $0.001$. The value functions from VI and PI should be within error tolerance $0.001$ of these values. You can use this to verify your implementation. For grading purposes, we shall test your implementation against other hidden test cases as well.
+ 
+\begin{tcolorbox}[breakable]
+%%%%% Start of 4(d) %%%%%
+With a WEAK current, the largest discount factor is $\gamma_{max}=0.67$. The optimal values are $V=[0.015,0.033,0.092,0.257,0.717,1.993]$ and the optimal policy is $[L, R, R, R, R, R]$. For this gamma, I find that we only go left in the state $s=1$. This behavior makes sense because with $\gamma = 0.67$ the agent is not attracted by the delayed and uncertain high reward on the right. It is too heavily discounted. From $s2$, the agent is closer to the right end, and because we were at the limit with $\gamma = 0.67$ for $s1$, it makes sens that in $s2$ we will try to swim right. For smaller gamma, we would expect the poliy to favor left in more states (it does happen when we diminish gamma). With $\gamma_{max}=0.67$ it is more reliable to go to the left.
+
+\vspace{0.8em}
+
+With a MEDIUM current, the largest discount factor is $\gamma_{max}=0.77$. The optimal values are $V=[0.022,0.035,0.095,0.275,0.798,2.314]$. With a STRONG current, the largest discount factor is $\gamma_{max}=0.93$. The optimal values are $V=[0.068,0.078,0.146,0.377,1.079,3.169]$.
+
+\vspace{0.5em}
+
+We first observe that $\gamma_{max}$ increases with the current strength. Qualitatively, this is explained by the fact that when the current is stronger, swimming right is more difficult. Thus the probability of progressing from left to right is smaller so the expected time to reach the right increases and the reward is more heavily discounted. We need a bigger overall reward to take the risk. That is why we need to increase $\gamma_{max}$ with the current.
+
+\vspace{0.5em}
+
+We also observe that for each state, the optimal value increases with the current. This is explained by the fact that gamma increases. A higher gamma means the agent values future rewards more (starting from any state). That is why every state value increases. Quantitatively, future rewards are weighted by $\gamma^t$, and increasing $\gamma$ increases the delayed rewards for all states, so $V(s)$ increases (even if the current is stronger).
+%%%%% End of 4(d) %%%%%
+\end{tcolorbox}
+
+\end{enumerate}
+
+\end{document} 

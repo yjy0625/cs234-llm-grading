@@ -1,0 +1,78 @@
+student_file: synthetic_00009.tex
+total_points: 34.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct or close enough'
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_a:
+    max_points: 3.0
+    points_awarded: 1.5
+    rubric_item: '-1.5: Correct approach but significant error'
+    comments: The student has the right intuition but does not provide a rigorous
+      proof. They need to use the definition of the Bellman operator and the norm
+      to show the inequality.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 2.5
+    rubric_item: '-0.5: Missing steps or minor error(s) in proof or format'
+    comments: The response lacks the explicit use of the contraction mapping property
+      to show uniqueness. It needs to show ||V - V'|| = ||B^pi V - B^pi V'|| <= gamma
+      ||V - V'|| and then conclude V = V' because gamma < 1.
+  q3_c:
+    max_points: 3.0
+    points_awarded: 1.5
+    rubric_item: '-1.5: Right idea but incorrect'
+    comments: The response correctly identifies that the expectation preserves the
+      inequality, but incorrectly claims that the reward term could break monotonicity
+      if rewards are negative. The reward term is the same in both B^pi V and B^pi
+      V', so it does not affect the monotonicity.
+  q3_d:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t conclude that V = V*'
+    comments: The student correctly states that V is a fixed point of B, but fails
+      to conclude that V = V*.
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or no attempt'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly claims that equal Bellman error implies equal
+      performance of the greedy policies. Equal Bellman error only guarantees that
+      both policies are within a bound of optimal, not that they are equal.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct

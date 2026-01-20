@@ -1,0 +1,97 @@
+problems:
+  q1:
+    description: "\\section{Deep $Q$-Networks (DQN) (8 pts writeup)} All questions in the section pertain to DQN. The pseudocode for DQN is provided below. \\begin{algorithm} \\caption{Deep Q-Network (DQN)} \\begin{algorithmic}[1] \\State Initialize replay buffer $\\mathcal{D}$ \\State Initialize action-value function $Q$ with random weights $\\theta$ \\State Initialize target action-value function $\\hat{Q}$ with weights $\\theta^- = \\theta$ \\For{episode = 1, $M$} \\State Receive initial state $s_1$ \\For{$t = 1$, $T$} \\State With probability $\\epsilon$ select a random action $a_t$ \\State otherwise select $a_t = \\argmax_a Q(s_t, a; \\theta)$ \\State Execute action $a_t$ and observe reward $r_t$ and state $s_{t+1}$ \\State Store transition $(s_t, a_t, r_t, s_{t+1})$ in $\\mathcal{D}$ \\State Sample random minibatch $B$ of transitions from $\\mathcal{D}$ \\For{each transition $(s_j, a_j, r_j, s_{j+1})$ in $B$} \\If{$s_{j+1}$ is terminal} \\State Set $y_j = r_j$ \\Else \\State Set $y_j = r_j + \\gamma \\max_{a'}\\hat{Q}(s_{j+1}, a'; \\theta^-)$ \\EndIf \\State Perform gradient descent step on $(y_j - Q(s_j, a_j; \\theta))^2$ with respect to network parameters $\\theta$ \\EndFor \\State Every $C$ steps reset $\\hat{Q} = Q$ by setting $\\theta^- = \\theta$ \\EndFor \\EndFor \\end{algorithmic} \\end{algorithm} \\subsection{Written Questions (8 pts)} \\begin{enumerate} \\item[(a) (3 pts)] (\\textbf{written}) What lines in the DQN pseudocode have to be changed to recover the tabular Q-learning algorithm and what would you change them to? \\item[(b) (2 pts)] (\\textbf{written}) In lecture 2, we introduced a Mars rover problem. What changes to the Mars Rover example may be made such that the tabular Q-learning algorithm will perform extremely poorly? (and then, for example, one might need to use a different algorithm such as DQN) \\item[(c) (3 pts)] (\\textbf{written}) Explain why the replay buffer used in DQN is beneficial. \\end{enumerate}"
+    parts:
+      a:
+        solution: "Trivially, you won't need lines 1-3 because tabular Q learning doesn't require \textit{function approximation} and \\textit{replay buffer} (data re-use).  Here we're looking for key differences between DQN and tabular Q-learning, which are:  \\begin{itemize} \\item Function approximation \\item Target network \\item Replay buffer  \\end{itemize}  , so any lines with replay buffer (e.g., 10, 11); \\textit{target network} (line 20); and \\textit{function approximation} (SGD in line 18). Line 18 should be changed to the Bellman update: $$Q(s_t, a_t) \\leftarrow Q(s_t, a_t) + \\alpha \\left[ r_t + \\gamma \\max_{a'} Q(s_{t+1}, a') - Q(s_t, a_t) \right]$$."
+        points: 3
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+      b:
+        solution: "Possible answer: If the states and action spaces are extremely large (e.g., continuous valued states and actions)."
+        points: 2
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-2: Incorrect or not attempted"
+      c:
+        solution: "DQN is an off-policy algorithm, so it can use dataset collected by a different policy. Without replay buffer (using on-policy data only), function approximation and Q learning update will both suffer from a lack of state and action coverage; alternatively, you will need to collect a large amount of on-policy data. Replay buffer increases data efficiency by incorporating more state and action tuples (from different policies) in the Q function update."
+        points: 3
+        rubric: 
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+  q2:
+    description: "\\section{Policy Gradient Methods (54 pts coding + 21 pts writeup)} The goal of this problem is to experiment with policy gradient and its variants, including variance reduction and off-policy methods. Your goals will be to set up policy gradient for both continuous and discrete environments, use a neural network baseline for variance reduction, and implement the off-policy Proximal Policy Optimization algorithm. The starter code has detailed instructions for each coding task and includes a README with instructions to set up your environment. Below, we provide an overview of the key steps of the algorithm. \\subsection{REINFORCE} Recall the policy gradient theorem, \\[ \\nabla_\\theta J(\\theta) = \\mathbb E_{\\pi_\\theta} \\left[ \\nabla_\\theta \\log\\pi_\\theta(a|s) Q^{\\pi_\\theta} (s,a) \\right] \\] REINFORCE is a Monte Carlo policy gradient algorithm, so we will be using the sampled returns $G_t$ as unbiased estimates of $Q^{\\pi_\\theta}(s,a)$. The REINFORCE estimator can be expressed as the gradient of the following objective function: \\[ J(\\theta) = \\frac{1}{\\sum T_i} \\sum_{i=1}^{|D|} \\sum_{t=1}^{T_i} \\log(\\pi_\\theta(a^i_t|s^i_t)) G^i_t \\] where $D$ is the set of all trajectories collected by policy $\\pi_\\theta$, and $\\tau^i =(s^i_0, a^i_0, r^i_0, s^i_1, \\dots, s^i_{T_i}, a^i_{T_i}, r^i_{T_i})$ is trajectory $i$. \\subsection{Baseline} One difficulty of training with the REINFORCE algorithm is that the Monte Carlo sampled return(s) $G_t$ can have high variance. To reduce variance, we subtract a baseline $b_{\\phi}(s)$ from the estimated returns when computing the policy gradient. A good baseline is the state value function, $V^{\\pi_\\theta}(s)$, which requires a training update to $\\phi$ to minimize the following mean-squared error loss: \\[ L_{\\text{MSE}}(\\phi) = \\frac{1}{\\sum T_i} \\sum_{i=1}^{|D|} \\sum_{t=1}^{T_i} (b_{\\phi}(s^i_t) - G^i_t)^2 \\] \\subsection{Advantage Normalization} After subtracting the baseline, we get the following new objective function: \\[ J(\\theta) = \\frac{1}{\\sum T_i} \\sum_{i=1}^{|D|} \\sum_{t=1}^{T_i} \\log(\\pi_\\theta(a^i_t|s^i_t)) \\hat{A}^i_t \\] where \\[\\hat{A}^i_t = G^i_t - b_{\\phi}(s^i_t)\\] A second variance reduction technique is to normalize the computed advantages, $\\hat{A}^i_t$, so that they have mean $0$ and standard deviation $1$. From a theoretical perspective, we can consider centering the advantages to be simply adjusting the advantages by a constant baseline, which does not change the policy gradient. Likewise, rescaling the advantages effectively changes the learning rate by a factor of $1/\\sigma$, where $\\sigma$ is the standard deviation of the empirical advantages."
+    parts:
+      a:
+        solution: "The key observation is that we can express the returns recursively: \\[G_t = \\begin{cases} r_T & t = T\\\\ r_t + \\gamma G_{t+1} & t < T \\end{cases}\\] Hence we can compute the returns backwards from $t = T$ down to $t = 0$. There are $O(T)$ values to compute, and each can be computed in $O(1)$ time, for a total of $O(T)$."
+        points: 3
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+      b:
+        solution: "1. Whenever the clip term is activated, i.e., the policy is changing a lot from the previous policy and hence the value of $J_{\\text{clip}}(\\theta)$ is independent of $\\theta$ in those cases as PPO only wants to take small steps in updating the policy. That is, if $z_\\theta > 1 + \\epsilon$ and $\\hat{A} > 0$ or $z_\\theta < 1 - \\epsilon$ and $\\hat{A} < 0$, the gradient is zero.  2. When the policy has converged to some local optima where $\\nabla_{\\theta}(\\pi_{\\theta}) = 0$.  3. When the advantage function $\\hat{A}=0$."
+        points: 3
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+      c:
+        solution: "REINFORCE does not use the ``old\" log probabilities (i.e., the log probabilities corresponding to the policy that was used to collect the updates) since the data is updated every iteration with the latest policy (it is on-policy). Since PPO uses the ratio of the ``current\" policy and the \"old\" policy (which is used to collect data), we need to collect this information for PPO specifically.  If we did not collect this information, we could always compute it on the fly by storing and tracking the old policy. This incurs additional computational cost in terms of time (an additional forward pass producing the same output for $K$ updates) and memory (an additional policy to store)."
+        points: 3
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+  q3:
+    description: "\\section{Distributions induced by a policy (14 pts)} Suppose we have a single MDP and two policies for that MDP, $\\pi$ and $\\pi'$. Naturally, we are often interested in the performance of policies obtained in the MDP, quantified by $V^{\\pi}$ and $V^{\\pi'}$, respectively. If the reward function and transition dynamics of the underlying MDP are known to us, we can use standard methods for policy evaluation. There are many scenarios, however, where the underlying MDP model is not known and we must try to infer something about the performance of policy $\\pi'$ solely based on data obtained through executing policy $\\pi$ within the environment. In this problem, we will explore a classic result for quantifying the gap in performance between two policies that only requires access to data sampled from one of the policies. Consider an infinite-horizon MDP $\\mathcal{M} = \\langle \\mathcal{S}, \\mathcal{A}, \\mathcal{R}, \\mathcal{P}, \\gamma \\rangle$ and stochastic policies of the form $\\pi: \\mathcal{S} \\rightarrow \\Delta(\\mathcal{A})$. Specifically, $\\pi(a|s)$ refers to the probability of taking action $a$ in state $s$, and $\\sum_a \\pi(a|s) = 1, \\text{ } \\forall s$. For simplicity, we'll assume that this decision process has a single, fixed starting state $s_{0} \\in \\mathcal{S}$."
+    parts:
+      a:
+        solution: "$$\\rho^\\pi(\\tau) = \\prod\\limits_{t=0}^\\infty \\pi(a_t|s_t) \\mathcal{P}(s_{t+1}|s_t,a_t)$$"
+        points: 3
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-3: Incorrect or not attempted"
+      b:
+        solution: "$$p^\\pi(s_t = s) = \\sum_{\\tau_{t-1}} \\rho^\\pi(\\tau_{t-1})\\mc{P}(s \\mid s_{t-1}, a_{t-1})$$"
+        points: 1
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: Incorrect or not attempted"
+      c:
+        solution: "\\begin{align*} \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t f(S_t,A_t)\\right]  &= \\sum\\limits_{t=0}^\\infty \\gamma^t\\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[ f(S_t, A_t)\\right]\\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[ f(S_0, A_0)\\right] + \\gamma \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[ f(S_1, A_1)\\right] +  \\gamma^2\\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[ f(S_2, A_2)\\right] + ...\\\\ &= \\sum_{s \\in \\mathcal S} \\left[ p^\\pi(S_0=s) \\mathbb{E}_{A\\sim\\pi(s)}[f(s, A)]\\right] + \\gamma \\sum_{s' \\in \\mathcal S} \\left[p^\\pi(S_1=s') \\mathbb{E}_{A'\\sim\\pi(s')}[f(s', A')] \\right] + ...\\\\ &= \\sum_{t=0}^{\\infty} \\left[  \\sum_{s \\in \\mathcal S} \\gamma^t p^\\pi(S_t=s)\\mathbb{E}_{A\\sim\\pi(s)}[f(s, A)] \\right] \\\\ &= \\frac{1}{(1-\\gamma)}\\sum_{s \\in \\mathcal S} d^\\pi(s)\\mathbb{E}_{A\\sim\\pi(s)}[f(s, A)] \\\\ &= \\frac{1}{(1-\\gamma)} \\mathbb{E}_{S \\sim d^\\pi}\\left[\\mathbb{E}_{A \\sim \\pi(s)}\\left[f(S,A)\\right]\\right] \\end{align*}"
+        points: 5
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: Minor mistakes but on the right track"
+          - "-3: Major mistakes but some correct ideas"
+          - "-5: Incorrect or not attempted"
+      d:
+        solution: "\\begin{align*} V^\\pi(s_0) - V^{\\pi'}(s_0) &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t \\mathcal{R}(s_t,a_t)\\right] - V^{\\pi'}(s_0) \\text{ (Def. of policy value) } \\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t \\mathcal{R}(s_t,a_t) - V^{\\pi'}(s_0) \\right] \\text{ (Linearity of expectation)}\\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\left(\\gamma^t \\left(\\mathcal{R}(s_t,a_t) + \\gamma V^{\\pi'}(s_{t+1})\\right)\\right) - \\sum\\limits_{t=0}^\\infty \\gamma^{t+1} V^{\\pi'}(s_{t+1}) - V^{\\pi'}(s_0) \\right] \\text{ (Adding ``zero'')}\\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\left(\\gamma^t \\left(\\mathcal{R}(s_t,a_t) + \\gamma V^{\\pi'}(s_{t+1})\\right)\\right) - \\sum\\limits_{t=0}^\\infty \\gamma^{t} V^{\\pi'}(s_{t})\\right]\\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t\\left( \\mathcal{R}(s_t,a_t) + \\gamma V^{\\pi'}(s_{t+1}) - V^{\\pi'}(s_t)\\right)\\right] \\\\ &= \\sum\\limits_{t=0}^\\infty \\gamma^t\\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[ \\mathcal{R}(s_t,a_t) + \\gamma V^{\\pi'}(s_{t+1}) - V^{\\pi'}(s_t)\\right] \\text{ (Linearity of expectation)} \\\\ &= \\sum\\limits_{t=0}^\\infty \\gamma^t\\mathbb{E}_{\\tau_t \\sim \\rho^\\pi}\\left[\\mathbb{E}_{s_{t+1}}\\left[ \\mathcal{R}(s_t,a_t) + \\gamma V^{\\pi'}(s_{t+1}) - V^{\\pi'}(s_t) \\Big| s_t, a_t \\right]\\right] \\text{ (Tower property of expectation)} \\\\ &= \\sum\\limits_{t=0}^\\infty \\gamma^t\\mathbb{E}_{\\tau_t \\sim \\rho^\\pi}\\left[ \\mathcal{R}(s_t,a_t) + \\gamma \\mathbb{E}_{s_{t+1}}\\left[V^{\\pi'}(s_{t+1}) \\Big| s_t, a_t \\right] - V^{\\pi'}(s_t)\\right] \\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t\\left( \\mathcal{R}(s_t,a_t) + \\gamma\\mathbb{E}_{s_{t+1}}\\left[ V^{\\pi'}(s_{t+1}) \\Big| s_t, a_t\\right] - V^{\\pi'}(s_t)\\right)\\right] \\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t\\left( Q^{\\pi'}(s_t,a_t) - V^{\\pi'}(s_t)\\right)\\right] \\\\ &= \\mathbb{E}_{\\tau \\sim \\rho^\\pi}\\left[\\sum\\limits_{t=0}^\\infty \\gamma^t A^{\\pi'}(s_t,a_t)\\right] \\\\ &= \\frac{1}{(1-\\gamma)} \\mathbb{E}_{s \\sim d^\\pi}\\left[\\mathbb{E}_{a \\sim \\pi(s)}\\left[A^{\\pi'}(s,a)\\right]\\right]. \\text{ ( Use $f := A^{\\pi'}$ in the result from (c))} \\end{align*}"
+        points: 5
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: Minor mistakes but on the right track"
+          - "-3: Major mistakes but some correct ideas"
+          - "-5: Incorrect or not attempted"
+  q4:
+    description: "\\section{Ethical concerns with Policy Gradients (5 pts)} In this assignment, we focus on policy gradients, an extremely popular and useful model-free technique for RL. However, policy gradients collect data from the environment with a potentially suboptimal policy during the learning process. While this is acceptable in simulators like Mujoco or Atari, such exploration in real world settings such as healthcare and education presents challenges. Consider a case study of a Stanford CS course considering introducing a RL-based chat bot for office hours. For each assignment, some students will be given 100\\% human CA office hours; others 100\\% chatbot; others a mix of both. The reward signal is the student grades on each assignment. Since the AI chatbot will learn through experience, at any given point in the quarter, the help given by the chatbot might be better or worse than the help given by a randomly selected human CA."
+    parts:
+      a:
+        solution: "Example correct answer: 1. Informed Consent: Researchers must ensure that all student participants are fully informed about the nature of the experiment, including the use of an AI chatbot for office hours. This is crucial to respect the principle of autonomy, as students should have the right to make an informed decision about their participation in the study. 2. Risk Mitigation: Researchers should implement measures to minimize potential harm to students receiving assistance from the chatbot. This could include providing additional support or resources for students who may struggle with the chatbot's advice. This is important to uphold the principle of beneficence, ensuring that the well-being of participants is prioritized and that any risks associated with using an AI chatbot are mitigated."
+        points: 4
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: On the right track but conceptual misunderstanding"
+          - "-4: Incorrect or not attempted"
+      b:
+        solution: "Example correct answer: To get clearance for the experiment at Stanford, researchers would need to submit a research protocol to the Stanford Institutional Review Board (IRB). This typically involves preparing a detailed description of the study, including its purpose, methodology, potential risks and benefits, and measures for protecting participant confidentiality. The protocol would be submitted through the IRB's online submission system, and researchers would need to await approval before commencing the study."
+        points: 1
+        rubric:
+          - "0: Correct or close enough"
+          - "-1: Incorrect or not attempted"

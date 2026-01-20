@@ -1,0 +1,70 @@
+student_file: synthetic_00008.tex
+total_points: 40.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: The student incorrectly claims that mixing buy and sell actions is never
+      optimal. The correct answer is that it is possible to choose a value of H that
+      results in the optimal policy taking both buy and sell steps during its execution.
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t provide a real-world example where a lower bound is
+      useful'
+    comments: The response describes a general application of performance bounds but
+      does not specifically address the utility of *lower* bounds, which is the focus
+      of the question.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

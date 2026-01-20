@@ -1,0 +1,76 @@
+student_file: submission_380180980.tex
+total_points: 41.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+    comments: 'The student correctly identifies the key distinction: the optimal policy
+      for an infinite-horizon discounted MDP is stationary, while the optimal policy
+      for a finite-horizon MDP is generally non-stationary. This is the core reason
+      why a single gamma cannot always match any arbitrary finite-horizon policy.'
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+    comments: The student provides a valid reward function, `r = -|v - avg(v_i)|`,
+      and correctly explains why it would incentivize the car to merge onto the highway.
+      The second suggestion of following the speed limit is also a reasonable solution.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 1.5
+    rubric_item: '-1.5: Correct approach but significant error'
+    comments: The student correctly sets up the proof by expanding the definitions.
+      However, the crucial step of applying the norm inequality (from line 4 to 5)
+      is mathematically incorrect and notationally flawed, even though the final result
+      is correct.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+    comments: The autonomous vehicle example is a great illustration of a safety-critical
+      system where a guaranteed lower bound on performance is crucial.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

@@ -1,0 +1,73 @@
+student_file: synthetic_00001.tex
+total_points: 39.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: The student's answer is incorrect. For a horizon of H=5, the optimal
+      policy from s=3 is to sell three times, then buy once, then sell once, yielding
+      a total reward of +4. This policy involves both buying and selling.
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Incorrect or not attempted
+    comments: The student incorrectly concludes that the large future reward will
+      always be preferred for any gamma > 0. They fail to recognize that for a sufficiently
+      small gamma, the agent becomes myopic and will prefer the immediate +1 rewards
+      from selling.
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct approach but significant error
+    comments: The response correctly identifies that the operator is a contraction
+      with factor gamma, but the argument provided is not a valid proof. The relationship
+      should be an inequality (<=), not an equality (=).
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Missing'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

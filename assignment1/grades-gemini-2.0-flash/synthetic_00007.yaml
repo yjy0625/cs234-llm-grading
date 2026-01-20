@@ -1,0 +1,80 @@
+student_file: synthetic_00007.tex
+total_points: 34.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct or close enough'
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: The student incorrectly claims that a \(\gamma\) can always be found
+      such that the discounted infinite-horizon optimal policy matches the finite-horizon
+      one. The optimal policy for a finite horizon MDP may be non-stationary, while
+      the optimal policy for the \(\gamma\)-discounted infinite horizon MDP is always
+      stationary.
+  q2_a:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t explain or imply that merging would slow down cars
+      on the highway'
+    comments: The response does not explicitly state that merging would slow down
+      the other cars on the highway, which is key to understanding why the proxy reward
+      is not aligned with the true reward.
+  q2_b:
+    max_points: 3.0
+    points_awarded: 2.0
+    rubric_item: '-1: Car still may not merge'
+    comments: The student suggests several reward functions, but some of them (like
+      penalizing hard braking/acceleration) might still lead to the AI car not merging
+      if merging requires such actions. The reward based on progress toward the destination
+      is better, but the student does not specify how to deal with the cars destination.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t conclude that V = V*'
+    comments: The student correctly states that ||BV - V|| = 0 when BV = V, but fails
+      to conclude that this implies V = V*.
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly claims that equal Bellman error implies equally
+      good value functions and policies.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

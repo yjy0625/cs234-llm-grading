@@ -1,0 +1,69 @@
+student_file: submission_380473239.tex
+total_points: 42.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct or close enough
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct approach but significant error
+    comments: The initial expansion is correct, but the steps involving inequalities
+      and norms are not rigorous. The argument incorrectly applies norm properties,
+      even though it reaches the correct final result.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 2.5
+    rubric_item: '-0.5: Missing steps or minor error(s) in proof or format'
+    comments: The proof by contradiction is a valid approach and mostly correct. However,
+      the final conclusion (that the fixed points must be equal) is not explicitly
+      stated, and there is a minor notational error in the setup of the inequality.
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

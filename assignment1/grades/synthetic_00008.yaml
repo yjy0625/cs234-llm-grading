@@ -1,0 +1,76 @@
+student_file: synthetic_00008.tex
+total_points: 42.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: On the right track but conceptual misunderstanding
+    comments: The student correctly identifies the two main strategies (pure sell
+      vs. pure buy to reach the goal), but incorrectly concludes that a mix of actions
+      can never be optimal. This is a common greedy-style error; for certain horizons
+      (e.g., H=5), a buy action can enable more future sell actions, leading to a
+      higher total reward than a pure sell strategy.
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+    comments: The student provides several excellent and well-reasoned alternative
+      reward functions. Each one correctly identifies a way to incentivize the AI
+      car to merge while still being a reasonable proxy for the true goal.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_g:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t provide a real-world example where a lower bound is
+      useful'
+    comments: The response provides a valid application of the Bellman residual bounds
+      in general, but it doesn't explain why a lower bound on performance is specifically
+      useful, which is key for safety-critical systems where a minimum performance
+      guarantee is needed.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

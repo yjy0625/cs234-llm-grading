@@ -1,0 +1,86 @@
+student_file: synthetic_00000.tex
+total_points: 33.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: On the right track but conceptual misunderstanding
+    comments: The student incorrectly concludes that the optimal policy will never
+      involve buying. They fail to consider that after the stock is depleted (s=0),
+      buying an item allows for a subsequent sale, which can increase the total reward
+      compared to a sell-only strategy for certain horizons (e.g., H=5).
+  q1_b:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+    comments: "The student's conclusion is incorrect. For a small enough discount\
+      \ factor (e.g., \n\n\\[\n\\gamma = 0\n\\]\n\n), the agent will prioritize immediate\
+      \ rewards. The large future reward of +100 would be discounted to be worth less\
+      \ than the immediate +1 reward from selling."
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct, with explanations'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t explain or imply that merging would slow down cars
+      on the highway'
+    comments: The explanation focuses on the AI car's own velocity being lowered by
+      merging, but misses the more critical point that merging would also slow down
+      the many other cars on the highway, which has a much larger effect on the mean
+      velocity.
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+    comments: The student provides several reasonable alternative reward functions.
+      For example, rewarding the car for reaching a waypoint on the highway would
+      incentivize it to merge, and this is simpler to optimize than the true reward
+      of minimizing global commute time.
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_e:
+    max_points: 5.0
+    points_awarded: 0.0
+    rubric_item: '-5: Blank'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+    comments: The student provides a valid real-world application (robotics) and correctly
+      explains that the performance bound serves as a safety or sanity check before
+      deploying a learned policy.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly answers yes. Equal Bellman error only guarantees
+      that the value of the induced greedy policies are within the same bound of the
+      optimal policy's value; it does not imply they are equal.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'

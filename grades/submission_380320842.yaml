@@ -1,0 +1,85 @@
+student_file: submission_380320842.tex
+total_points: 42.5
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: On the right track but conceptual misunderstanding
+    comments: "The student correctly identifies that for a range of H (specifically,\
+      \ 4 < H < 7), the optimal policy will involve both buying and selling. However,\
+      \ their reasoning for H \u2265 7 is incorrect; the optimal policy in that case\
+      \ is to always buy to reach the +100 terminal reward as quickly as possible,\
+      \ as the episode ends upon reaching that state."
+  q1_b:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Incorrect or not attempted
+    comments: The student correctly states that such a pair exists, but the provided
+      example of gamma=1 and H=7 is incorrect. The optimal policy for an infinite
+      horizon with gamma=1 is to first sell until the inventory is empty and then
+      buy, which is different from the optimal policy for H=7 (which is to always
+      buy).
+  q1_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct, with explanations
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Correct approach but significant error
+    comments: The student starts with the correct definitions but makes significant
+      algebraic errors in the derivation. Specifically, in step 3, the term p(s'|s,pi(s))
+      is not correctly factored, and in step 5, the vector (V-V') is incorrectly factored
+      out of the summation.
+  q3_b:
+    max_points: 3.0
+    points_awarded: 2.5
+    rubric_item: '-0.5: Missing steps or minor error(s) in proof or format'
+    comments: The proof is logically correct but could be more explicit. The implication
+      in step 3, `|| V - V' || <= gamma || V-V'|| => 1 <= gamma`, implicitly assumes
+      `||V - V'|| > 0` as part of the proof by contradiction, but this assumption
+      is not stated.
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: Right idea but incorrect
+    comments: The overall structure of the proof is correct, but the intermediate
+      steps are flawed. The core reasoning for why the expectation preserves the inequality
+      is missing, and there is a significant notational error, using pi(s') instead
+      of pi(s) in the transition probability.
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: Correct
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct
+  q3_g:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_h:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: Correct

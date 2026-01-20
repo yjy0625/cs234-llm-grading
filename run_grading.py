@@ -7,7 +7,8 @@ import yaml
 from pydantic import BaseModel
 from google import genai
 
-MODEL_NAME = "gemini-2.5-pro" # "gemini-2.0-flash"
+MODEL_NAME = "gemini-2.5-pro"
+# MODEL_NAME = "gemini-2.0-flash"
 
 
 class PartGrading(BaseModel):

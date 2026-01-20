@@ -1,0 +1,902 @@
+submissions:
+  submission_380180980.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 30.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 43.0
+  submission_380441683.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 7.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 29.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 42.0
+  submission_380544094.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 29.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 42.0
+  submission_380398343.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 30.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 43.0
+  submission_380274967.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 7.5
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '-0.5: Off by one'
+            points_awarded: 1.5
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Does not specify a reward function'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 29.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step'
+            points_awarded: 4.0
+    total_points: 40.5
+  submission_380321039.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 7.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Does not specify a reward function'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 29.5
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 40.5
+  submission_380473239.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 7.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '-1: On the right track but conceptual misunderstanding'
+            points_awarded: 1.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 4.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '-1: Car still may not merge'
+            points_awarded: 2.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 26.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple smaller errors'
+            points_awarded: 3.0
+    total_points: 37.0
+  submission_380320842.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 3.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 0.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 28.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '-0.5: Missing steps or minor error(s) in proof or format'
+            points_awarded: 2.5
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-1: Skipped step'
+            points_awarded: 4.0
+    total_points: 39.0
+  submission_380462968.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 7.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '-1: Correct, but no specific example of gamma given that
+              works'
+            points_awarded: 1.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 3.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 0.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 24.5
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '-0.5: Minor error'
+            points_awarded: 2.5
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '-1: Doesn''t conclude that V = V*'
+            points_awarded: 1.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple smaller errors'
+            points_awarded: 3.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '-2: Moderate error, or a couple smaller errors'
+            points_awarded: 3.0
+    total_points: 34.5
+  submission_380309426.tex:
+    questions:
+      q1:
+        numeric_label: '1'
+        points_awarded: 8.0
+        parts:
+          a:
+            label: 1(a)
+            max_points: 2.0
+            target_rubric: '0: Correct or close enough'
+            points_awarded: 2.0
+          b:
+            label: 1(b)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          c:
+            label: 1(c)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+          d:
+            label: 1(d)
+            max_points: 2.0
+            target_rubric: '0: Correct, with explanations'
+            points_awarded: 2.0
+      q2:
+        numeric_label: '2'
+        points_awarded: 5.0
+        parts:
+          a:
+            label: 2(a)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          b:
+            label: 2(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+      q3:
+        numeric_label: '3'
+        points_awarded: 29.0
+        parts:
+          a:
+            label: 3(a)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          b:
+            label: 3(b)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          c:
+            label: 3(c)
+            max_points: 3.0
+            target_rubric: '0: Correct'
+            points_awarded: 3.0
+          d:
+            label: 3(d)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          e:
+            label: 3(e)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+          f:
+            label: 3(f)
+            max_points: 5.0
+            target_rubric: '-1: Minor error'
+            points_awarded: 4.0
+          g:
+            label: 3(g)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          h:
+            label: 3(h)
+            max_points: 2.0
+            target_rubric: '0: Correct'
+            points_awarded: 2.0
+          i:
+            label: 3(i)
+            max_points: 5.0
+            target_rubric: '0: Correct'
+            points_awarded: 5.0
+    total_points: 42.0

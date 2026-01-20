@@ -1,0 +1,74 @@
+student_file: synthetic_00002.tex
+total_points: 35.0
+parts:
+  q1_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct or close enough'
+  q1_b:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_c:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect or not attempted'
+  q1_d:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: On the right track but conceptual misunderstanding'
+    comments: The student's response suggests that a small \(\gamma\) can always make
+      the infinite horizon policy match the finite horizon policy. However, the core
+      issue is that finite horizon policies can be non-stationary, while infinite
+      horizon policies are stationary. This difference cannot be overcome by simply
+      adjusting \(\gamma\).
+  q2_a:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q2_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_a:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_b:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_c:
+    max_points: 3.0
+    points_awarded: 3.0
+    rubric_item: '0: Correct'
+  q3_d:
+    max_points: 2.0
+    points_awarded: 2.0
+    rubric_item: '0: Correct'
+  q3_e:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_f:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
+  q3_g:
+    max_points: 2.0
+    points_awarded: 1.0
+    rubric_item: '-1: Doesn''t provide a real-world example where a lower bound is
+      useful'
+    comments: The student provides an application of the performance bound for the
+      greedy policy, but does not give a real-world application of the lower bound.
+  q3_h:
+    max_points: 2.0
+    points_awarded: 0.0
+    rubric_item: '-2: Incorrect (answers yes) or blank'
+    comments: The student incorrectly claims that equal Bellman error implies comparable
+      performance. Equal Bellman error only guarantees that both policies are within
+      a bound of optimal, not that they are equal.
+  q3_i:
+    max_points: 5.0
+    points_awarded: 5.0
+    rubric_item: '0: Correct'
